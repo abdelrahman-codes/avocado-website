@@ -1,16 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ServiceCard = () => {
     return (
-        <Card>
-            <CardTitle>Service title</CardTitle>
-            <CardDesc>
-                Service description goes here , this is a text as a place holder fro
-                a breife description for the service so we
-                can know how it will look like at the end
-            </CardDesc>
-        </Card>
+        <Link className="nav-link" to="/services/aaa">
+            <Card>
+                <CardTitle>Service title</CardTitle>
+                <CardDesc>
+                    Service description goes here , this is a text as a place holder fro
+                    a breife description for the service so we
+                    can know how it will look like at the end
+                </CardDesc>
+            </Card>
+        </Link>
     )
 }
 
