@@ -2,6 +2,11 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import logoPic from '../../assets/logo.png'
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const MainFooter = () => {
     return (
         <Footer >
@@ -26,28 +31,19 @@ const MainFooter = () => {
                     <p>Copyright © 2022. All Rights Reserved</p>
                     <Social>
                         <Link className="nav-link" to="/">
-                            <Logo
-                                src={logoPic}
-                                alt="logoPic"
-                            />
+                            <LinkedInIcon/>
                         </Link>
                         <Link className="nav-link" to="/">
-                            <Logo
-                                src={logoPic}
-                                alt="logoPic"
-                            />
+                           <PhoneIcon/>
                         </Link>
                         <Link className="nav-link" to="/">
-                            <Logo
-                                src={logoPic}
-                                alt="logoPic"
-                            />
+                           <WhatsAppIcon/>
                         </Link>
                         <Link className="nav-link" to="/">
-                            <Logo
-                                src={logoPic}
-                                alt="logoPic"
-                            />
+                          <InstagramIcon/>
+                        </Link>
+                        <Link className="nav-link" to="/">
+                          <FacebookIcon/>
                         </Link>
                     </Social>
                 </FooterSocial>

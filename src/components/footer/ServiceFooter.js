@@ -77,6 +77,7 @@ padding: 40px;
 font-weight: bold;
 @media (max-width: 770px) {
     padding: 20px;
+    margin-bottom: 20px;
     font-size: 20px;
 
 }
