@@ -9,6 +9,7 @@ import HomePage from './pages/home/HomePage';
 import MainFooter from './components/footer/MainFooter';
 import Services from './pages/services/Services';
 import ServiceDetails from './pages/serviceDetails/ServiceDetails';
+import ContactUs from './pages/contactUs/ContactUs';
 const App = () => {
     return (
         <>
@@ -17,6 +18,7 @@ const App = () => {
                 <Route path="/" element={<HomePage />}></Route>
                 <Route path="/services" element={<Services />}></Route>
                 <Route path="/services/:id" element={<ServiceDetails />}></Route>
+                <Route path="contact-us" element={<ContactUs />}></Route>
 
                 {/* Not found page */}
                 {/* <Route path="/*" ></Route> */}
