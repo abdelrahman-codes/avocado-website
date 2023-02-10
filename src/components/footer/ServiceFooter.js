@@ -116,7 +116,7 @@ const Icon = styled.span`
 margin-right: 20px;
 `;
 const Form = styled.div`
-flex:1;
+flex:.6;
 display: flex;
 flex-direction: column;
 align-items:center;
@@ -139,7 +139,7 @@ margin-bottom: 40px;
 
 const Input = styled.input`
 margin-bottom: 15px;
-width: 75%;
+width: 85%;
 padding: 13px 10px ;
 border-radius: 17px;
 @media (max-width: 1000px) {
