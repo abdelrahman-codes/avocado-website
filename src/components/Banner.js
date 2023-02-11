@@ -52,7 +52,8 @@ display: flex;
 justify-content:center;
 align-items:flex-end;
 >iframe{
-  @media (max-width: 390px) {
+  border-radius: 10px;
+  @media (max-width: 500px) {
     width: 80% !important;
    height: 75%;
   }
