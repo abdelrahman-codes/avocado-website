@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components';
+import MainFooter from '../../components/footer/MainFooter';
 import ServiceFooter from '../../components/footer/ServiceFooter';
+import Navbar from '../../components/navbar/Navbar';
 
 const ServiceDetails = () => {
     return (
         <>
+            <Navbar />
             <Details className="container">
                 Nearly all great ideas follow a similar creative process and this article explains how this process works. Understanding this is important because creative thinking is one of the most useful skills you can possess. Nearly every problem you face in work and in life can benefit from innovative solutions, lateral thinking, and creative ideas.
 
@@ -28,6 +31,7 @@ const ServiceDetails = () => {
                 Alright, now let’s discuss what lessons we can learn from Ives about the creative process.
             </Details>
             <ServiceFooter />
+            <MainFooter/>
         </>
 
     )

@@ -1,17 +1,25 @@
 import React from 'react'
 import styled from 'styled-components';
+import MainFooter from '../../components/footer/MainFooter';
+import Navbar from '../../components/navbar/Navbar';
 import ServiceCard from '../../components/ServiceCard'
 
 const Services = () => {
     return (
-        <ServicesContainer className='container'>
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
-        </ServicesContainer>
+        <>
+            <Navbar />
+            <ServicesContainer className='container'>
+                <ServiceCard />
+                <ServiceCard />
+                <ServiceCard />
+                <ServiceCard />
+                <ServiceCard />
+                <ServiceCard />
+            </ServicesContainer>
+            <MainFooter />
+
+        </>
+
     )
 }
 

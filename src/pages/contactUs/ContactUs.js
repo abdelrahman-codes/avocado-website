@@ -7,52 +7,60 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import mapPic from '../../assets/map.png'
 import ContactUsForm from '../../components/ContactUsForm';
+import Navbar from '../../components/navbar/Navbar';
+import MainFooter from '../../components/footer/MainFooter';
 const ContactUs = () => {
     return (
-        <Contact className="container">
-            <LeftSide>
-                <FAQ>
-                    leave your information and  we will contact with your soon
-                    or you can also contact us on
-                </FAQ>
-                <ContactInfo>
-                    <ContactDetails>
-                        <Icon>
-                            <PhoneIcon />
-                        </Icon>
-                        +20 1559784456
-                    </ContactDetails>
+        <>
+            <Navbar />
+            <Contact className="container">
+                <LeftSide>
+                    <FAQ>
+                        leave your information and  we will contact with your soon
+                        or you can also contact us on
+                    </FAQ>
+                    <ContactInfo>
+                        <ContactDetails>
+                            <Icon>
+                                <PhoneIcon />
+                            </Icon>
+                            +20 1559784456
+                        </ContactDetails>
 
-                    <ContactDetails>
-                        <Icon>
-                            <MailIcon />
-                        </Icon>
-                        Msaid@manifasto.com
-                    </ContactDetails>
+                        <ContactDetails>
+                            <Icon>
+                                <MailIcon />
+                            </Icon>
+                            Msaid@manifasto.com
+                        </ContactDetails>
 
-                    <ContactDetails>
-                        <Icon>
-                            <WhatsAppIcon />
-                        </Icon>
-                        +20 1559784456
-                    </ContactDetails>
+                        <ContactDetails>
+                            <Icon>
+                                <WhatsAppIcon />
+                            </Icon>
+                            +20 1559784456
+                        </ContactDetails>
 
-                    <ContactDetails>
-                        <Icon>
-                            <LocationOnIcon />
-                        </Icon>
-                        8 omar biker  - masr al gdeda
-                    </ContactDetails>
+                        <ContactDetails>
+                            <Icon>
+                                <LocationOnIcon />
+                            </Icon>
+                            8 omar biker  - masr al gdeda
+                        </ContactDetails>
 
-                </ContactInfo>
-                <Map
-                    src={mapPic}
-                    alt="location image"
-                />
-            </LeftSide>
+                    </ContactInfo>
+                    <Map
+                        src={mapPic}
+                        alt="location image"
+                    />
+                </LeftSide>
 
-            <ContactUsForm />
-        </Contact>
+                <ContactUsForm />
+            </Contact>
+            <MainFooter />
+        </>
+
+
 
     )
 }
