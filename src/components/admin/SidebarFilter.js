@@ -28,6 +28,8 @@ const SidebarFilter = ({IsService, IsCountry,IsCompany}) => {
 export default SidebarFilter;
 
 const Container1 = styled.div`
+position:fixed;
+left:0px;
 width: 20%;
 @media (max-width: 1000px) {
 width: 30%;

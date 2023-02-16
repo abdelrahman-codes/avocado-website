@@ -14,6 +14,11 @@ const NewCompany = () => {
           <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="1" />
           <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="2" />
           <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
         </Cards>
       </Company>
     </>
@@ -24,7 +29,9 @@ export default NewCompany;
 
 const Company = styled.div`
 margin-top: 100px;
+position: relative;
 display: flex;
+justify-content: flex-end;
 padding:0px 40px ;
 @media (max-width: 850px) {
   padding:0px 20px ;

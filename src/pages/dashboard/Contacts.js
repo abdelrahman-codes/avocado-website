@@ -15,6 +15,10 @@ const Contacts = () => {
             <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
             <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
             <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
+            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
+            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
+            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
+            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
           </Cards>
         </Service>
       </>
@@ -27,6 +31,7 @@ export default Contacts;
 const Service = styled.div`
 margin-top: 100px;
 display: flex;
+justify-content: flex-end;
 padding:0px 40px ;
 @media (max-width: 850px) {
   padding:0px 20px ;
