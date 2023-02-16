@@ -12,6 +12,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import NewCompany from './pages/dashboard/NewCompany';
 import Templates from './pages/dashboard/Templates';
 import Contacts from './pages/dashboard/Contacts';
+import RegisterCompant from './pages/registerCompany/RegisterCompant';
 const App = () => {
     return (
         <>
@@ -20,7 +21,10 @@ const App = () => {
                 <Route path="/services" element={<Services />}></Route>
                 <Route path="/services/:id" element={<ServiceDetails />}></Route>
                 <Route path="/contact-us" element={<ContactUs />}></Route>
+                <Route path="/register-company" element={<RegisterCompant />}></Route>
 
+                {/*  Admin Dashboard*/}
+                {/* make it protected routes */}
                 <Route path="/admin/main-dashboard" element={<Dashboard />}></Route>
                 <Route path="/admin/company-requests" element={<NewCompany />}></Route>
                 <Route path="/admin/templates" element={<Templates />}></Route>
