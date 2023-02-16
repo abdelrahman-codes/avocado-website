@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { ImageUploader } from './ImageUploader';
 
 const LandingPage = () => {
     return (
@@ -35,10 +36,25 @@ const LandingPage = () => {
                     <Input className="form-control" />
                 </Adding>
 
+
+                <Lable> انواع الشركات</Lable>
+                <Options>
+                    <Option>الشركة المستحيلة</Option>
+                    <Option>الشركة القابضة</Option>
+                    <Option>الشركة القابضة</Option>
+                    <Option>الشركة المستحيلة</Option>
+                </Options>
+
+                <Adding>
+                    <Button >اضافه</Button>
+                    <Input className="form-control" />
+                </Adding>
+
                 <Lable>وصف الموقع</Lable>
                 <Input className="form-control" />
 
                 <Lable>صوره لخريطه الموقع</Lable>
+                <ImageUploader/>
                 <Button >حفظ</Button>
 
             </Container>
@@ -53,13 +69,26 @@ display: flex;
 justify-content: flex-end;
 margin-top: 100px;
 background-color: #DCDCDC;
-border-radius:25px
+border-radius:25px;
+padding-bottom: 20px;
 `;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
 width: 50%;
+@media (max-width: 1000px) {
+width: 75%;
+}
+@media (max-width: 500px) {
+width: 85%;
+}
+@media (max-width: 400px) {
+width: 95%;
+}
+@media (max-width: 360px) {
+width: 100%;
+}
 `;
 
 const Lable = styled.h6`
