@@ -12,7 +12,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import NewCompany from './pages/dashboard/NewCompany';
 import Templates from './pages/dashboard/Templates';
 import Contacts from './pages/dashboard/Contacts';
-import RegisterCompant from './pages/registerCompany/RegisterCompant';
+import RegisterCompany from './pages/registerCompany/RegisterCompany';
 const App = () => {
     return (
         <>
@@ -21,7 +21,7 @@ const App = () => {
                 <Route path="/services" element={<Services />}></Route>
                 <Route path="/services/:id" element={<ServiceDetails />}></Route>
                 <Route path="/contact-us" element={<ContactUs />}></Route>
-                <Route path="/register-company" element={<RegisterCompant />}></Route>
+                <Route path="/register-company" element={<RegisterCompany />}></Route>
 
                 {/*  Admin Dashboard*/}
                 {/* make it protected routes */}

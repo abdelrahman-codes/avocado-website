@@ -2,13 +2,14 @@ import React from 'react'
 import MainFooter from '../../components/footer/MainFooter'
 import Navbar from '../../components/navbar/Navbar'
 
-const RegisterCompant = () => {
+const RegisterCompany = () => {
     return (
         <>
             <Navbar />
+            
             <MainFooter />
         </>
     )
 }
 
-export default RegisterCompant
+export default RegisterCompany
