@@ -1,74 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import CompanyBtn from './CompanyBtn';
+import CountryBtn from './CountryBtn';
+import ServiceBtn from './ServiceBtn';
 
-const FilterContnet = ({ IsService, IsCountry, IsCompany }) => {
+const FilterContnet = ({ IsService, IsCountry, IsCompany, countryName, id }) => {
+    const [country, setCountry] = useState("EGY");
     return (
         <Filter>
             {IsService &&
                 (<>
                     <Title>نوع الخدمه</Title>
                     <FilterContent >
-                        <input type="checkbox" className="btn-check" id="Sev1" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Sev1">خدمه 1</label>
-
-                        <input type="checkbox" className="btn-check" id="Sev2" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Sev2">خدمه 2</label>
-
-                        <input type="checkbox" className="btn-check" id="Sev3" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Sev3">خدمه 3</label>
-
-                        <input type="checkbox" className="btn-check" id="Sev4" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Sev4">خدمه 4</label>
-
-                        <input type="checkbox" className="btn-check" id="Sev5" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Sev5">الكل</label>
+                        <ServiceBtn />
                     </FilterContent>
                     <Border />
-
+                    <Title>البلد</Title>
+                    <FilterContent >
+                        <CountryBtn />
+                    </FilterContent>
+                    <Border />
                 </>
                 )
-
-
             }
             {IsCompany &&
                 (<>
                     <Title>نوع الشركه</Title>
                     <FilterContent >
-                        <input type="checkbox" className="btn-check" id="Type1" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Type1">فرديه</label>
-
-                        <input type="checkbox" className="btn-check" id="Type2" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Type2">ذات مسؤليه محدوده</label>
-
-                        <input type="checkbox" className="btn-check" id="Type3" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="Type3">مساهمه</label>
-
-                        <input type="checkbox" className="btn-check" id="AllT" autoComplete="off" />
-                        <label className="btn btn-outline-secondary my-1" htmlFor="AllT">الكل</label>
+                        <CompanyBtn />
+                    </FilterContent>
+                    <Border />
+                    <Title>البلد</Title>
+                    <FilterContent >
+                        <CountryBtn />
                     </FilterContent>
                     <Border />
                 </>)
             }
 
 
-            <Title>البلد</Title>
-            <FilterContent >
-                <input type="checkbox" className="btn-check" id="EGY" autoComplete="off" />
-                <label className="btn btn-outline-secondary my-1" htmlFor="EGY">مصر</label>
+            {IsCountry && (
+                <>
+                    <Title>البلد</Title>
+                    <Border />
 
-                <input type="checkbox" className="btn-check" id="UAE" autoComplete="off" />
-                <label className="btn btn-outline-secondary my-1" htmlFor="UAE">الامارات</label>
+                    <FilterContent >
+                        <input type="radio" name="country" className="btn-check" id="EGY" autoComplete="off" onClick={(e) => { setCountry(e.target.id) }} />
+                        <label className="btn btn-outline-secondary my-1" htmlFor="EGY">مصر</label>
 
-                <input type="checkbox" className="btn-check" id="Moraco" autoComplete="off" />
-                <label className="btn btn-outline-secondary my-1" htmlFor="Moraco">المغرب</label>
+                        <input type="radio" name="country" className="btn-check" id="UAE" autoComplete="off" onClick={(e) => { setCountry(e.target.id) }} />
+                        <label className="btn btn-outline-secondary my-1" htmlFor="UAE">الامارات</label>
 
-                <input type="checkbox" className="btn-check" id="KSA" autoComplete="off" />
-                <label className="btn btn-outline-secondary my-1" htmlFor="KSA">السعوديه</label>
+                        <input type="radio" name="country" className="btn-check" id="Moraco" autoComplete="off" onClick={(e) => { setCountry(e.target.id) }} />
+                        <label className="btn btn-outline-secondary my-1" htmlFor="Moraco">المغرب</label>
 
-                <input type="checkbox" className="btn-check" id="AllC" autoComplete="off" />
-                <label className="btn btn-outline-secondary my-1" htmlFor="AllC">الكل</label>
-            </FilterContent>
-            <Border />
+                        <input type="radio" name="country" className="btn-check" id="KSA" autoComplete="off" onClick={(e) => { setCountry(e.target.id) }} />
+                        <label className="btn btn-outline-secondary my-1" htmlFor="KSA">السعوديه</label>
+
+
+                        <button className="btn btn-outline-secondary my-1">اضافه بلد + </button>
+                    </FilterContent>
+                    <Border />
+                </>
+
+            )}
+
+
 
         </Filter>
     )
