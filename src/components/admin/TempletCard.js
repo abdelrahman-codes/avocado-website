@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete';
-const TempletCard = ({ name, remove }) => {
+import { Link } from 'react-router-dom';
+const TempletCard = ({ name, remove ,id}) => {
     return (
-        <Card>
-            {name}
-            {remove && (<span> <DeleteIcon /></span>)}
-        </Card>
+        <Link className="nav-link" to ={`/admin/templates/${id}`}>
+            <Card>
+                {name}
+                {remove && (<span> <DeleteIcon /></span>)}
+            </Card>
+        </Link>
     )
 }
 

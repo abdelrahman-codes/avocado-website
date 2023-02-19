@@ -11,14 +11,14 @@ const TempletsRightSide = () => {
                 <button className="btn btn-secondary m-2">اضافه نموذج جديد +</button>
             </Btn>
             <Cards>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
-                <TempletCard name="نموذج شركات فرديه"  remove={remove}/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="1"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="2"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="3"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="4"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="5"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="6"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="7"/>
+                <TempletCard name="نموذج شركات فرديه"  remove={remove} id="8"/>
 
             </Cards>
         </Container>
