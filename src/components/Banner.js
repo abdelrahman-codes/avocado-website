@@ -1,5 +1,6 @@
 import React from 'react'
 import Iframe from 'react-iframe'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 const Banner = () => {
   return (
@@ -17,7 +18,9 @@ const Banner = () => {
         </Frame>
         <BannerDetails>
           <Slogan>Lorem ipsum dolor sit amet, consectetur.</Slogan>
-          <Register >Register company Now</Register>
+          <Link className='nav-link' to='/register-company'>
+            <Register >Register company Now</Register>
+          </Link>
         </BannerDetails>
 
 
@@ -78,7 +81,7 @@ font-size: 16px;
 font-weight:500;
 border: none;
 border-radius: 20px;
-
+color: #000;
 `;
 const Slogan = styled.h1`
 font-size: 30px;

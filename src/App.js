@@ -17,6 +17,7 @@ import Protected from './components/Protected';
 import NewCompanyDetail from './pages/dashboard/NewCompanyDetail';
 import AdminLogin from './pages/dashboard/AdminLogin';
 import TempletesForm from './pages/dashboard/TempletesForm';
+import RegisterCompanyForm from './pages/registerCompany/RegisterCompanyForm';
 
 const App = () => {
     const [isLoggedIn, setisLoggedIn] = useState(null);
@@ -35,6 +36,9 @@ const App = () => {
                 <Route path="/services/:id" element={<ServiceDetails />}></Route>
                 <Route path="/contact-us" element={<ContactUs />}></Route>
                 <Route path="/register-company" element={<RegisterCompany />}></Route>
+                <Route path="/register-company-form" element={<RegisterCompanyForm />}></Route>
+
+                
 
                 {/*  Admin Dashboard*/}
                 <Route path='/admin/login' element={<AdminLogin />} />

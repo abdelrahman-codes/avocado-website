@@ -3,26 +3,24 @@ import styled from 'styled-components'
 import CompanyLocation from '../../components/CompanyLocation'
 import MainFooter from '../../components/footer/MainFooter'
 import Navbar from '../../components/navbar/Navbar'
-import Pic from '../../assets/ill1.png'
+import Pic from '../../assets/ill2.png'
 import RegisterCompanyRightSide from '../../components/RegisterCompanyRightSide'
+const RegisterCompanyForm = () => {
+  return (
+    <>
+    <Navbar />
+    <Company className="container">
+        <LeftSide className="shadow">
+        </LeftSide>
+        <RegisterCompanyRightSide content2 pic={Pic} />
+    </Company>
 
-const RegisterCompany = () => {
-    return (
-        <>
-            <Navbar />
-            <Company className="container">
-                <LeftSide className="shadow">
-                    <CompanyLocation />
-                </LeftSide>
-                <RegisterCompanyRightSide content1 pic={Pic} />
-            </Company>
-
-            <MainFooter />
-        </>
-    )
+    <MainFooter />
+</>
+  )
 }
 
-export default RegisterCompany;
+export default RegisterCompanyForm;
 
 const Company = styled.div`
 margin-top: 100px;
