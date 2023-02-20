@@ -1,11 +1,11 @@
 import React from 'react';
 import ImageUploading from 'react-images-uploading';
 import styled from 'styled-components';
-
-export function ImageUploader() {
+import Pic from '../../assets/upload.png'
+export function ImageUploader({ form }) {
     const [images, setImages] = React.useState([]);
-    const maxNumber = 1;
-
+    let maxNumber = 5;
+    form ? maxNumber = 5 :maxNumber = 1;
     const onChange = (imageList, addUpdateIndex) => {
         // data for submit
         console.log(imageList, addUpdateIndex);
@@ -18,7 +18,7 @@ export function ImageUploader() {
                 multiple
                 value={images}
                 onChange={onChange}
-                maxNumber={maxNumber}
+                maxNumber={5}
                 dataURLKey="data_url"
             >
                 {({
@@ -31,7 +31,15 @@ export function ImageUploader() {
                 }) => (
                     // write your building UI
                     <>
-                        {!imageList.length &&
+                        {form
+                            ? <MainButton
+                                style={isDragging ? { backgroundColor: 'red' } : undefined}
+                                onClick={onImageUpload}
+                                {...dragProps}
+                            >
+                                <img style={{maxWidth:"100px"}} src={Pic} alt="uploader" />
+                            </MainButton>
+                            : !imageList.length &&
                             <MainButton
                                 style={isDragging ? { backgroundColor: 'red' } : undefined}
                                 onClick={onImageUpload}

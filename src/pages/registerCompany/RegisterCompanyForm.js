@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import CompanyLocation from '../../components/CompanyLocation'
 import MainFooter from '../../components/footer/MainFooter'
 import Navbar from '../../components/navbar/Navbar'
 import Pic from '../../assets/ill2.png'
 import RegisterCompanyRightSide from '../../components/RegisterCompanyRightSide'
+import RegisterCompanyFormSection from '../../components/RegisterCompanyFormSection'
 const RegisterCompanyForm = () => {
   return (
     <>
     <Navbar />
     <Company className="container">
         <LeftSide className="shadow">
+            <RegisterCompanyFormSection />
         </LeftSide>
         <RegisterCompanyRightSide content2 pic={Pic} />
     </Company>
