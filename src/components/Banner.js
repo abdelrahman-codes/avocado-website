@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import Iframe from 'react-iframe'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+
 const Banner = () => {
+  const [banner, setBanner] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, [])
+  const fetchData = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}header`);
+    setBanner(data.header)
+  }
   return (
     <BannerContainer>
       <BannerContent>
         <Frame>
-          <Iframe url="https://www.youtube.com/embed/RODioSM4gLY"
+          <Iframe url={`https://www.youtube.com/embed/${banner?.youtubeId}`}
             width="70%"
             height="85%"
             id=""
@@ -17,7 +27,7 @@ const Banner = () => {
           />
         </Frame>
         <BannerDetails>
-          <Slogan>Lorem ipsum dolor sit amet, consectetur.</Slogan>
+          <Slogan>{banner?.slogan}</Slogan>
           <Link className='nav-link' to='/register-company'>
             <Register >Register company Now</Register>
           </Link>
