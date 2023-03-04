@@ -1,11 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const ServiceFooter = () => {
+    const { id } = useParams()
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [country, setCountry] = useState("");
+    const [email, setEmail] = useState("");
+    const [social, setSocial] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [saved, setSaved] = useState(false);
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}social`);
+        setSocial(data?.Social)
+    }
+
+    const contactUs = async () => {
+        if (name === "" || email === "" || country === "" || phone === "") {
+            setError(true)
+        } else {
+            setError(false)
+            setLoading(true)
+            const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}contact-us`, {
+                name, email, country, phone, service: id,
+            });
+            setSaved(true)
+        }
+        setLoading(false)
+    }
     return (
         <Footer>
             <FooterContainer className="container">
@@ -20,38 +53,45 @@ const ServiceFooter = () => {
                             <Icon>
                                 <PhoneIcon />
                             </Icon>
-                            +20 1559784456
+                            {social?.phone}
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <MailIcon />
                             </Icon>
-                            Msaid@manifasto.com
+                            {social?.email}
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <WhatsAppIcon />
                             </Icon>
-                            +20 1559784456
+                            {social?.phone}
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <LocationOnIcon />
                             </Icon>
-                            8 omar biker  - masr al gdeda
+                            {social?.location}
                         </ContactDetails>
 
                     </Contact>
 
                     <Form>
-                        <Input className="form-control" placeholder="Name" />
-                        <Input className="form-control" placeholder="Phone" type="number" />
-                        <Input className="form-control" placeholder="Countery" />
-                        <Input className="form-control" placeholder="Email" type="Email" />
-                        <Button >Send</Button>
+                        <Input className="form-control" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                        <Input className="form-control" placeholder="Phone" type="number" onChange={(e) => setPhone(e.target.value)} />
+                        <Input className="form-control" placeholder="Countery" onChange={(e) => setCountry(e.target.value)} />
+                        <Input className="form-control" placeholder="Email" type="Email" onChange={(e) => setEmail(e.target.value)} />
+
+                        {error && <Message >Please fill all fields</Message>}
+                        {saved
+                            ? "We will contact you soon!"
+                            : <Button
+                                onClick={contactUs}
+                            >{loading ? "loading" : "Send"}</Button>
+                        }
                     </Form>
 
                 </FooterContent>
@@ -163,3 +203,7 @@ padding:15px 50px;
 font-weight: bold;
 font-size:16px;
  `;
+
+const Message = styled.h6`
+ color: red;
+ `

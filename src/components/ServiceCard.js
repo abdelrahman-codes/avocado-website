@@ -2,15 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const ServiceCard = () => {
+const ServiceCard = ({ service }) => {
     return (
-        <Link className="nav-link" to="/services/aaa">
+        <Link className="nav-link" to={`/services/${service._id}`}>
             <Card>
-                <CardTitle>Service title</CardTitle>
+                <CardTitle>{service?.title}</CardTitle>
                 <CardDesc>
-                    Service description goes here , this is a text as a place holder fro
-                    a breife description for the service so we
-                    can know how it will look like at the end
+                    {service?.desc}
                 </CardDesc>
             </Card>
         </Link>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import sectionPic from '../assets/section.png'
-const HomeSections = ({ right }) => {
+const HomeSections = ({ right, section }) => {
     return (
         < >
             {!right ?
@@ -9,24 +9,16 @@ const HomeSections = ({ right }) => {
                     <SectionContainer>
                         <SectionPicture>
                             <Image
-                                src={sectionPic}
+                                src={process.env.REACT_APP_SECTION_IMAGES + section?.pic}
                                 alt="sectionPic"
                             />
                         </SectionPicture>
                         <SectionDetails>
                             <SectionTile>
-                                Section title
+                                {section?.title}
                             </SectionTile>
                             <SectionDesc>
-                                There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered alteration in
-                                some form, by injected humour, or randomised
-                                words which don't look even slightly believable.
-                                If you are going to use a passage of Lorem Ipsum,
-                                you need to be sure there isn't anything embarrassing
-                                hidden in the middle of text. All the Lorem Ipsum
-                                generators on the Internet tend to repeat predefined chunks as
-                                necessary, making thiwords etc.
+                                {section?.desc}
                             </SectionDesc>
                         </SectionDetails>
                     </SectionContainer>
@@ -36,23 +28,15 @@ const HomeSections = ({ right }) => {
                     <SectionContainerRight>
                         <SectionDetails>
                             <SectionTile>
-                                Section title
+                                {section?.title}
                             </SectionTile>
                             <SectionDesc>
-                                There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered alteration in
-                                some form, by injected humour, or randomised
-                                words which don't look even slightly believable.
-                                If you are going to use a passage of Lorem Ipsum,
-                                you need to be sure there isn't anything embarrassing
-                                hidden in the middle of text. All the Lorem Ipsum
-                                generators on the Internet tend to repeat predefined chunks as
-                                necessary, making thiwords etc.
+                                {section?.desc}
                             </SectionDesc>
                         </SectionDetails>
                         <SectionPicture>
                             <Image
-                                src={sectionPic}
+                                src={process.env.REACT_APP_SECTION_IMAGES + section?.pic}
                                 alt="sectionPic"
                                 style={{ borderTopRightRadius: '70px', borderTopLeftRadius: '0px' }}
                             />
@@ -61,11 +45,6 @@ const HomeSections = ({ right }) => {
                     </SectionContainerRight>
                 </LeftSections>
             }
-
-
-
-
-
         </>
     )
 }
@@ -134,7 +113,8 @@ margin-bottom: 20px;
   }
 `;
 const SectionDesc = styled.p``;
-const SectionPicture = styled.div``;
+const SectionPicture = styled.div`
+`;
 const Image = styled.img`
 height:100%;
 width:100%;

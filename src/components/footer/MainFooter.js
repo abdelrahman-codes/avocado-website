@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import logoPic from '../../assets/logo.png'
@@ -8,6 +9,14 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const MainFooter = () => {
+    const [social, setSocial] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}social`);
+        setSocial(data?.Social)
+    }
     return (
         <Footer >
             <FooterContainer className="container">
@@ -30,21 +39,21 @@ const MainFooter = () => {
                 <FooterSocial>
                     <p>Copyright © 2022. All Rights Reserved</p>
                     <Social>
-                        <Link className="nav-link" to="/">
-                            <LinkedInIcon/>
-                        </Link>
-                        <Link className="nav-link" to="/">
-                           <PhoneIcon/>
-                        </Link>
-                        <Link className="nav-link" to="/">
-                           <WhatsAppIcon/>
-                        </Link>
-                        <Link className="nav-link" to="/">
-                          <InstagramIcon/>
-                        </Link>
-                        <Link className="nav-link" to="/">
-                          <FacebookIcon/>
-                        </Link>
+                        <a className="nav-link" href={social?.linkedin} target="_blank" rel="noopener noreferrer">
+                            <LinkedInIcon />
+                        </a>
+                        <a className="nav-link" href={`tel:${social?.phone}`} target="_blank" rel="noopener noreferrer">
+                            <PhoneIcon />
+                        </a>
+                        <a className="nav-link" href={`tel:${social?.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                            <WhatsAppIcon />
+                        </a>
+                        <a className="nav-link" href={social?.instagram} target="_blank" rel="noopener noreferrer">
+                            <InstagramIcon />
+                        </a>
+                        <a className="nav-link" href={social?.facebook} target="_blank" rel="noopener noreferrer">
+                            <FacebookIcon />
+                        </a>
                     </Social>
                 </FooterSocial>
 

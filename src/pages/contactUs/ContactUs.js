@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import styled from 'styled-components';
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';
@@ -10,6 +11,14 @@ import ContactUsForm from '../../components/ContactUsForm';
 import Navbar from '../../components/navbar/Navbar';
 import MainFooter from '../../components/footer/MainFooter';
 const ContactUs = () => {
+    const [social, setSocial] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}social`);
+        setSocial(data?.Social)
+    }
     return (
         <>
             <Navbar />
@@ -24,37 +33,37 @@ const ContactUs = () => {
                             <Icon>
                                 <PhoneIcon />
                             </Icon>
-                            +20 1559784456
+                            {social?.phone}
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <MailIcon />
                             </Icon>
-                            Msaid@manifasto.com
+                            {social?.email}
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <WhatsAppIcon />
                             </Icon>
-                            +20 1559784456
+                            {social?.phone}
+
                         </ContactDetails>
 
                         <ContactDetails>
                             <Icon>
                                 <LocationOnIcon />
                             </Icon>
-                            8 omar biker  - masr al gdeda
+                            {social?.location}
                         </ContactDetails>
 
                     </ContactInfo>
                     <Map
-                        src={mapPic}
+                        src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
                         alt="location image"
                     />
                 </LeftSide>
-
                 <ContactUsForm />
             </Contact>
             <MainFooter />

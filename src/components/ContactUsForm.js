@@ -1,17 +1,47 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
 const ContactUsForm = () => {
-  return (
-    <Form>
-      <Input className="form-control" placeholder="Name" />
-      <Input className="form-control" placeholder="Phone" type="number" />
-      <Input className="form-control" placeholder="Countery" />
-      <Input className="form-control" placeholder="Email" type="Email" />
-      <Area className="form-control" placeholder="Message content" rows="7" />
-      <Button >Send</Button>
-    </Form>
-  )
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [country, setCountry] = useState("");
+    const [email, setEmail] = useState("");
+    const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [saved, setSaved] = useState(false);
+
+    const contactUs = async () => {
+        if (name === "" || email === "" || country === "" || phone === "" || content === "") {
+            setError(true)
+        } else {
+            setError(false)
+            setLoading(true)
+            const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}contact-us`, {
+                name, email, country, phone, content,
+            });
+            setSaved(true)
+        }
+        setLoading(false)
+    }
+
+    return (
+        <Form>
+            <Input className="form-control" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <Input className="form-control" placeholder="Phone" type="number" onChange={(e) => setPhone(e.target.value)} />
+            <Input className="form-control" placeholder="Countery" onChange={(e) => setCountry(e.target.value)} />
+            <Input className="form-control" placeholder="Email" type="Email" onChange={(e) => setEmail(e.target.value)} />
+            <Area className="form-control" placeholder="Message content" rows="7" onChange={(e) => setContent(e.target.value)} />
+            {error && <Message >Please fill all fields</Message>}
+            {saved
+                ? "We will contact you soon!"
+                : <Button
+                    onClick={contactUs}
+                >{loading ? "loading" : "Send"}</Button>
+            }
+        </Form>
+    )
 }
 
 export default ContactUsForm
@@ -55,7 +85,7 @@ padding: 10px ;
     width: 95%;
 }
 `;
-const Area = styled.textarea `
+const Area = styled.textarea`
 margin-bottom: 15px;
 width: 85%;
 padding: 13px 10px ;
@@ -79,3 +109,6 @@ padding:15px 50px;
 font-weight: bold;
 font-size:16px;
  `;
+const Message = styled.h6`
+ color: red;
+ `
