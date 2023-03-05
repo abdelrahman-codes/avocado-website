@@ -22,7 +22,7 @@ import RegisterCompanyForm from './pages/registerCompany/RegisterCompanyForm';
 const App = () => {
     const [isLoggedIn, setisLoggedIn] = useState(null);
     const logIn = () => {
-        if (sessionStorage.getItem("ManifastoAvocado"))
+        if (localStorage.getItem("ManifastoAvocado"))
             setisLoggedIn(true);
     };
     useEffect(() => {

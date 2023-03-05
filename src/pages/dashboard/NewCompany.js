@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import SidebarFilter from '../../components/admin/SidebarFilter'
 import Navbar from '../../components/admin/Navbar'
 import RequestCard from '../../components/admin/RequestCard'
 
 const NewCompany = () => {
+  const [request, setRequest] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, [])
+  const fetchData = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}request`);
+    setRequest(data?.request)
+  }
   return (
     <>
       <Navbar />
       <Company className="container-fluid">
         <SidebarFilter IsCompany />
         <Cards >
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="1" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="2" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
-          <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" companyType="شركه فرديه" id="3" />
+
+          {request?.map(ele => (
+            <RequestCard key={ele._id} country={ele?.country} name={ele?.name} date={ele?.createdAt} companyType={ele?.companyType} id={ele?._id} />
+          ))}
+
         </Cards>
       </Company>
     </>

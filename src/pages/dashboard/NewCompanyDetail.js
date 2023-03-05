@@ -1,22 +1,78 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 import FilesSection from '../../components/admin/FilesSection'
 import Navbar from '../../components/admin/Navbar'
 import NewCompanyDetailHeader from '../../components/admin/NewCompanyDetail'
-import file from '../../assets/Hello.docx'
-import pic from '../../assets/section.png'
-const details = `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.`
+import styled from 'styled-components'
 
 const NewCompanyDetail = () => {
+    const [files, setFiles] = useState([])
+    const [pics, setPics] = useState([])
+    let { id } = useParams()
+    const [request, setRequest] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}request/${id}`);
+        setRequest(data?.request)
+        const arr1 = [], arr2 = []
+
+        setFiles(arr2)
+        setPics(arr1)
+    }
     return (
         <>
             <Navbar />
-            <NewCompanyDetailHeader name="مهاب سعيد مهاب سعيد" company="كود" companyType="فرديه" country="مصر" details={details} />
-            <FilesSection files={[file, file, file, file, file, file, file, file, file, file, file]} />
-            <FilesSection pics={[pic, pic, pic, pic, pic, pic, pic, pic, pic, pic, pic]} />
+            <NewCompanyDetailHeader name={request?.name} company={request?.companyName} companyType={request?.companyType} country={request?.country} details={request?.details} />
+            <Files className='container'>
+                {request?.files?.map(file => {
+                    if (file.includes(".png") || file.includes(".jpeg") || file.includes(".jpg")) {
+                    } else {
+                        return <FilesSection file={file} />;
+
+                    }
+                })}
+            </Files>
+
+            <Files className='container'>
+                {request?.files?.map(file => {
+                    if (file.includes(".png") || file.includes(".jpeg") || file.includes(".jpg")) {
+                        return <FilesSection pic={file} />;
+                    }
+                })}
+            </Files>
+
+            {/* <FilesSection pics={pics} /> */}
 
         </>
     )
 }
 
-export default NewCompanyDetail
+export default NewCompanyDetail;
+
+const Files = styled.div`
+background-color: #DCDCDC;
+width: 70%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+border-radius: 25px;
+margin-top: 25px;
+@media (max-width: 768px) {
+    width: 90%;
+}
+>a{
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+    margin: 20px;
+    transition: all 0.3s ease;
+    :hover{
+        transform: scale(.9,.9);
+    }
+
+}
+`;

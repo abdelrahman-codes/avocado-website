@@ -8,7 +8,10 @@ const NewCompanyDetailHeader = ({ name, company, companyType, country, details }
             <Content>اسم الشركه : <span>{company}</span></Content>
             <Content>نوع الشركه : <span>{companyType}</span></Content>
             <Content>مكان الانشاء : <span>{country}</span></Content>
-            <Content>تفاصيل : <br /> <br /><span>{details}</span></Content>
+            <Content>تفاصيل : <br /> <br /></Content>
+            {details?.map((ele, index) => (
+                <Content key={index + ele?.answer}> {ele?.question}? <br />{ele?.answer} </Content>
+            ))}
         </Container>
     )
 }

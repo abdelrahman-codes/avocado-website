@@ -16,8 +16,6 @@ const Contacts = () => {
     const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}contact-us`);
     setContact(data?.contact)
   }
-  console.log(contact)
-
   return (
     <>
       <>

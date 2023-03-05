@@ -9,7 +9,7 @@ const AdminLogin = () => {
     const navigate = useNavigate();
     const login = () => {
         if (process.env.REACT_APP_USERNAME === username && process.env.REACT_APP_PASSWORD === password) {
-            sessionStorage.setItem("ManifastoAvocado", "true")
+            localStorage.setItem("ManifastoAvocado", "true")
             navigate("/admin/main-dashboard")
         }
     }
