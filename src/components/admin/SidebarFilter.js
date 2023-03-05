@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components';
 import FilterContnet from './FilterContnet';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-const SidebarFilter = ({ IsService, IsCountry, IsCompany }) => {
+const SidebarFilter = ({ IsService, IsCountry, IsCompany, list }) => {
     return (
         <>
             <Container1>
-                <FilterContnet IsService={IsService} IsCompany={IsCompany} IsCountry={IsCountry} />
+                <FilterContnet IsService={IsService} IsCompany={IsCompany} IsCountry={IsCountry} list={list} />
             </Container1>
             <Container2>
 
                 <button className="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                   <FilterAltIcon/>
+                    <FilterAltIcon />
                 </button>
 
                 <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -20,11 +20,11 @@ const SidebarFilter = ({ IsService, IsCountry, IsCompany }) => {
                         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div className="offcanvas-body">
-                    <FilterContnet IsService={IsService} IsCompany={IsCompany} IsCountry={IsCountry} />
+                        <FilterContnet IsService={IsService} IsCompany={IsCompany} IsCountry={IsCountry} />
                     </div>
                 </div>
 
-              
+
 
             </Container2>
         </>

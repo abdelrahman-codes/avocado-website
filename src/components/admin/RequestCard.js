@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RequestCard = ({ name, company, date, email, phone, country, service, companyType, id }) => {
+const RequestCard = ({ name, date, email, phone, country, service, companyType, id }) => {
     return (
         (id
             ? <Link className='nav-link' to={`/admin/company-requests/${id}`}>
@@ -13,7 +13,6 @@ const RequestCard = ({ name, company, date, email, phone, country, service, comp
                     </Cardfilter>
                     <CardContent>
                         <Name>{name}</Name>
-                        <Content>{company}</Content>
                         {email && (<Content>{email}</Content>)}
                         {phone && (<Content>{phone}</Content>)}
                         <Content>{date}</Content>
@@ -27,7 +26,6 @@ const RequestCard = ({ name, company, date, email, phone, country, service, comp
                 </Cardfilter>
                 <CardContent>
                     <Name>{name}</Name>
-                    <Content>{company}</Content>
                     {email && (<Content>{email}</Content>)}
                     {phone && (<Content>{phone}</Content>)}
                     <Content>{date}</Content>

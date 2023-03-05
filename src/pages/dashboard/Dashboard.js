@@ -10,8 +10,8 @@ const Dashboard = () => {
             <Navbar />
             <div className="container-fluid">
                 <LandingPage />
-                <Sections/>
-                <AddSection/>
+                <Sections />
+                <AddSection />
             </div>
         </>
     )

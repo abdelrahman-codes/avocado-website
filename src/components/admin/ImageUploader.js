@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useImperativeHandle } from 'react';
 import ImageUploading from 'react-images-uploading';
 import styled from 'styled-components';
 import Pic from '../../assets/upload.png'
-export function ImageUploader({ form }) {
+export function ImageUploader({ form, pic }) {
     const [images, setImages] = React.useState([]);
-    let maxNumber = 5;
-    form ? maxNumber = 5 :maxNumber = 1;
+    // let maxNumber = 5;
+    // form ? maxNumber = 5 :maxNumber = 1;
     const onChange = (imageList, addUpdateIndex) => {
         // data for submit
         console.log(imageList, addUpdateIndex);
         setImages(imageList);
     };
-
     return (
         <Uploader>
             <ImageUploading
@@ -37,7 +36,7 @@ export function ImageUploader({ form }) {
                                 onClick={onImageUpload}
                                 {...dragProps}
                             >
-                                <img style={{maxWidth:"100px"}} src={Pic} alt="uploader" />
+                                <img style={{ maxWidth: "100px" }} src={Pic} alt="uploader" />
                             </MainButton>
                             : !imageList.length &&
                             <MainButton

@@ -1,19 +1,23 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 const CountryBtn = () => {
+    const [countrys, setCountry] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}country`);
+        setCountry(data.countrys)
+    }
     return (
         <>
-            <input type="checkbox" className="btn-check" id="EGY" autoComplete="off" />
-            <label className="btn btn-outline-secondary my-1" htmlFor="EGY">مصر</label>
-
-            <input type="checkbox" className="btn-check" id="UAE" autoComplete="off" />
-            <label className="btn btn-outline-secondary my-1" htmlFor="UAE">الامارات</label>
-
-            <input type="checkbox" className="btn-check" id="Moraco" autoComplete="off" />
-            <label className="btn btn-outline-secondary my-1" htmlFor="Moraco">المغرب</label>
-
-            <input type="checkbox" className="btn-check" id="KSA" autoComplete="off" />
-            <label className="btn btn-outline-secondary my-1" htmlFor="KSA">السعوديه</label>
+            {countrys?.map(ele => (
+                <div key={ele._id} >
+                    <input type="checkbox" className="btn-check" id={ele._id} autoComplete="off" />
+                    <label className="btn btn-outline-secondary my-1" htmlFor={ele._id}>{ele.name}</label>
+                </div>
+            ))}
 
             <input type="checkbox" className="btn-check" id="AllC" autoComplete="off" />
             <label className="btn btn-outline-secondary my-1" htmlFor="AllC">الكل</label>

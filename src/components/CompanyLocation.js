@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import Pic1 from '../assets/egy.png'
-import Pic2 from '../assets/KSA.png'
-import Pic3 from '../assets/FRC.png'
-import Pic4 from '../assets/UAE.png'
-import Pic5 from '../assets/GZA.png'
-import Pic6 from '../assets/empty.png'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const CompanyLocation = () => {
+    const [country, setCountry] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}country`);
+        setCountry(data?.countrys)
+    }
     const navigate = useNavigate();
     const SaveCounter = (country) => {
         localStorage.setItem("AvocadoCountry", country)
@@ -21,24 +25,11 @@ const CompanyLocation = () => {
             <p> Where do you want to form this company?</p>
 
             <Row>
-                <div id="egy" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="egy" src={Pic1} alt="egy" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
-                <div id="KSA" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="KSA" src={Pic2} alt="KSA" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
-                <div id="FRC" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="FRC" src={Pic3} alt="FRC" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
-                <div id="UAE" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="UAE" src={Pic4} alt="UAE" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
-                <div id="GZA" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="GZA" src={Pic5} alt="GZA" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
-                <div id="empty" onClick={(e) => { SaveCounter(e.target.id) }}>
-                    <img id="empty" src={Pic6} alt="empty" onClick={(e) => { SaveCounter(e.target.id) }} />
-                </div>
+                {country?.map(ele => (
+                    <div key={ele._id} id={ele.name} onClick={(e) => { SaveCounter(e.target.id) }}>
+                        <img id={ele.name} src={process.env.REACT_APP_COUNTRY_IMAGES + ele.pic} alt={ele.name} onClick={(e) => { SaveCounter(e.target.id) }} />
+                    </div>
+                ))}
             </Row>
 
         </Container>

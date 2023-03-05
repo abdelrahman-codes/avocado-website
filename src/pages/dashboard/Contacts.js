@@ -1,24 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
+
 import SidebarFilter from '../../components/admin/SidebarFilter'
 import Navbar from '../../components/admin/Navbar'
 import RequestCard from '../../components/admin/RequestCard'
 
 const Contacts = () => {
+
+  const [contact, setContact] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, [])
+  const fetchData = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}contact-us`);
+    setContact(data?.contact)
+  }
+  console.log(contact)
+
   return (
     <>
       <>
         <Navbar />
         <Service className="container-fluid">
-          <SidebarFilter IsService/>
+          <SidebarFilter IsService list={contact} />
           <Cards >
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
-            <RequestCard company="manifasto" country="مصر" name="مهاب سعيد" date="20/12/2022 - 5:32 PM" service="خدمه 1" phone="201015756658" email="Testtest@gmail.com" />
+            {contact?.map(ele => (
+              <RequestCard key={ele._id} country={ele.country} name={ele.name} date={ele.createdAt} service={ele?.service?.title || "No Service"} phone={ele.phone} email={ele.email} />
+            ))}
           </Cards>
         </Service>
       </>

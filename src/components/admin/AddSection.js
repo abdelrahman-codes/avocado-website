@@ -14,7 +14,9 @@ const AddSection = () => {
 
                 <Lable>الصوره</Lable>
                 <ImageUploader />
-                <Button >حفظ</Button>
+                <div className="d-flex justify-content-end">
+                    <Button className='my-2 '>حفظ</Button>
+                </div>
             </Container>
         </Section>
     )

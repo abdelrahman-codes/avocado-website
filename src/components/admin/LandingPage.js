@@ -1,73 +1,150 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import styled from 'styled-components';
 import { ImageUploader } from './ImageUploader';
 
 const LandingPage = () => {
+
+    const [youtubeId, setYouTube] = useState("");
+    const [slogan, setSlogan] = useState("");
+    const [headerId, setHeaderId] = useState("")
+    const [facebook, setFacebook] = useState("");
+    const [instagram, setInstagram] = useState("");
+    const [phone, setPhone] = useState("");
+    const [whatsapp, setWhatsapp] = useState("");
+    const [linkedin, setLinkedin] = useState("");
+    const [location, setLocation] = useState("");
+    const [pic, setPic] = useState("");
+    const [email, setEmail] = useState("");
+    const [saved, setSaved] = useState(false);
+
+
+    useEffect(() => {
+        fetchHeader();
+        fetchSocial();
+    }, [])
+    const fetchHeader = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}header`);
+        setYouTube(data?.header.youtubeId)
+        setSlogan(data?.header.slogan)
+        setHeaderId(data?.header._id)
+    }
+
+    const fetchSocial = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}social`);
+        setFacebook(data?.Social.facebook)
+        setInstagram(data?.Social.instagram)
+        setLinkedin(data?.Social.linkedin)
+        setEmail(data?.Social.email)
+        setWhatsapp(data?.Social.whatsapp)
+        setLocation(data?.Social.location)
+        setPhone(data?.Social.phone)
+        setPic(data?.Social.pic)
+    }
+
+    const updateSocial = async () => {
+        const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}header/${headerId}`, {
+            youtubeId, slogan
+        });
+        setSaved(true)
+        setTimeout(() => {
+            setSaved(false)
+        }, "5000");
+    }
     return (
-        <Landing className="container-fluid">
-            <Container>
-                <Lable>لينك فيديو اليوتيوب</Lable>
-                <Input className="form-control" />
+        <>
+            <Landing className="container-fluid" style={{ marginTop: "100px" }}>
+                <Container>
+                    <Lable>لينك فيديو اليوتيوب</Lable>
+                    <Input className="form-control" value={youtubeId} onChange={(e) => setYouTube(e.target.value)} />
+                    <Lable>الشعار</Lable>
+                    <Input className="form-control" value={slogan} onChange={(e) => setSlogan(e.target.value)} />
 
-                <Lable> تليفون التواصل</Lable>
-                <Input className="form-control" />
+                    {saved &&
+                        <div className="d-flex justify-content-center my-2">
+                            <h6 style={{ color: "green" }}>تم الحفظ</h6>
+                        </div>
+                    }
 
-                <Lable> تليفون الواتساب</Lable>
-                <Input className="form-control" />
+                    <div className="d-flex justify-content-end">
+                        <Button className='my-2 ' onClick={() => updateSocial()}>حفظ</Button>
+                    </div>
+                </Container>
+            </Landing>
+            <Landing className="container-fluid">
+                <Container>
+                    <Lable> تليفون التواصل</Lable>
+                    <Input className="form-control" value={phone} onChange={(e) => setPhone(e.target.value)} />
 
-                <Lable> ايميل التواصل</Lable>
-                <Input className="form-control" />
+                    <Lable> تليفون الواتساب</Lable>
+                    <Input className="form-control" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
+
+                    <Lable> ايميل التواصل</Lable>
+                    <Input className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+
+                    <Lable>فيسبوك</Lable>
+                    <Input className="form-control" value={facebook} onChange={(e) => setFacebook(e.target.value)} />
+
+                    <Lable>انستجرام</Lable>
+                    <Input className="form-control" value={instagram} onChange={(e) => setInstagram(e.target.value)} />
+
+                    <Lable>لينكيدان</Lable>
+                    <Input className="form-control" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
+
+                    <Lable>الموقع</Lable>
+                    <Input className="form-control" value={location} onChange={(e) => setLocation(e.target.value)} />
+
+                    <Lable>صوره لخريطه الموقع</Lable>
+                    <ImageUploader />
+                    <div className="d-flex justify-content-end">
+                        <Button className='my-2 '>حفظ</Button>
+                    </div>
+
+                    {/* <Lable> البلاد</Lable>
+                    <Options>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                        <Option>مصر</Option>
+                    </Options>
+
+                    <Adding>
+                        <Button >اضافه</Button>
+                        <Input className="form-control" />
+                    </Adding>
 
 
-                <Lable> البلاد</Lable>
-                <Options>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                    <Option>مصر</Option>
-                </Options>
+                    <Lable> انواع الشركات</Lable>
+                    <Options>
+                        <Option>الشركة المستحيلة</Option>
+                        <Option>الشركة القابضة</Option>
+                        <Option>الشركة القابضة</Option>
+                        <Option>الشركة المستحيلة</Option>
+                    </Options>
 
-                <Adding>
-                    <Button >اضافه</Button>
-                    <Input className="form-control" />
-                </Adding>
+                    <Adding>
+                        <Button >اضافه</Button>
+                        <Input className="form-control" />
+                    </Adding> */}
 
 
-                <Lable> انواع الشركات</Lable>
-                <Options>
-                    <Option>الشركة المستحيلة</Option>
-                    <Option>الشركة القابضة</Option>
-                    <Option>الشركة القابضة</Option>
-                    <Option>الشركة المستحيلة</Option>
-                </Options>
 
-                <Adding>
-                    <Button >اضافه</Button>
-                    <Input className="form-control" />
-                </Adding>
+                </Container>
 
-                <Lable>وصف الموقع</Lable>
-                <Input className="form-control" />
-
-                <Lable>صوره لخريطه الموقع</Lable>
-                <ImageUploader/>
-                <Button >حفظ</Button>
-
-            </Container>
-
-        </Landing>
+            </Landing>
+        </>
     )
 }
 
 export default LandingPage;
 const Landing = styled.div`
 display: flex;
+margin-bottom:30px;
 justify-content: flex-end;
-margin-top: 100px;
 background-color: #DCDCDC;
 border-radius:25px;
 padding-bottom: 20px;

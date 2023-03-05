@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import sectionPic from '../assets/section.png'
 const HomeSections = ({ right, section }) => {
     return (
         < >

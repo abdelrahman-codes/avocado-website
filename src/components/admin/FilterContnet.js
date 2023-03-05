@@ -4,7 +4,7 @@ import CompanyBtn from './CompanyBtn';
 import CountryBtn from './CountryBtn';
 import ServiceBtn from './ServiceBtn';
 
-const FilterContnet = ({ IsService, IsCountry, IsCompany, countryName, id }) => {
+const FilterContnet = ({ IsService, IsCountry, IsCompany, countryName, id, list }) => {
     const [country, setCountry] = useState("EGY");
     return (
         <Filter>
@@ -58,7 +58,7 @@ const FilterContnet = ({ IsService, IsCountry, IsCompany, countryName, id }) => 
                         <label className="btn btn-outline-secondary my-1" htmlFor="KSA">السعوديه</label>
 
 
-                        <button className="btn btn-outline-secondary my-1">اضافه بلد + </button>
+                        <button className="btn btn-outline-secondary my-1" data-bs-toggle="modal" data-bs-target="#exampleModal">اضافه بلد + </button>
                     </FilterContent>
                     <Border />
                 </>

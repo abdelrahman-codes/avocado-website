@@ -6,7 +6,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-import mapPic from '../../assets/map.png'
 import ContactUsForm from '../../components/ContactUsForm';
 import Navbar from '../../components/navbar/Navbar';
 import MainFooter from '../../components/footer/MainFooter';

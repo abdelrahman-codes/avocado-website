@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import SectionQSA from './SectionQSA';
 
 const TempleteSectionForm = ({ id }) => {
-    const [question,setquestion] = useState(1)
+    // const [question,setquestion] = useState(1)
     return (
         <div class="accordion mb-4 " id="accordionExample">
             <Accordion class="accordion-item ">
@@ -14,7 +14,7 @@ const TempleteSectionForm = ({ id }) => {
                 </h2>
                 <div id={`${id}`} class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <SectionQSA/>
+                        <SectionQSA />
                     </div>
                 </div>
             </Accordion>
