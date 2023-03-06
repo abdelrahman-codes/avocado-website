@@ -11,7 +11,7 @@ const Templates = () => {
       <Template className="container-fluid">
         <SidebarFilter IsCountry />
         <Cards>
-        <TempletsRightSide/>
+          <TempletsRightSide />
         </Cards>
       </Template>
 
