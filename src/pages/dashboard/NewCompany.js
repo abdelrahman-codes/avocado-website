@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import SidebarFilter from '../../components/admin/SidebarFilter'
 import Navbar from '../../components/admin/Navbar'
 import RequestCard from '../../components/admin/RequestCard'
+import { useSelector } from 'react-redux'
 
 const NewCompany = () => {
+  let company = useSelector(state => state.company.value);
   const [request, setRequest] = useState([]);
   useEffect(() => {
     fetchData();
@@ -21,9 +23,14 @@ const NewCompany = () => {
         <SidebarFilter IsCompany />
         <Cards >
 
-          {request?.map(ele => (
-            <RequestCard key={ele._id} country={ele?.country} name={ele?.name} date={ele?.createdAt} companyType={ele?.companyType} id={ele?._id} />
-          ))}
+          {request?.map(ele => {
+            if (company === "all") {
+              return <RequestCard key={ele._id} country={ele?.country} name={ele?.name} date={ele?.createdAt} companyType={ele?.companyType} id={ele?._id} />
+            }
+            else if (company == ele.companyType) {
+              return <RequestCard key={ele._id} country={ele?.country} name={ele?.name} date={ele?.createdAt} companyType={ele?.companyType} id={ele?._id} />
+            }
+          })}
 
         </Cards>
       </Company>

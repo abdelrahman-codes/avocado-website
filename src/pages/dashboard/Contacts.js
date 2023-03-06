@@ -5,8 +5,10 @@ import styled from 'styled-components'
 import SidebarFilter from '../../components/admin/SidebarFilter'
 import Navbar from '../../components/admin/Navbar'
 import RequestCard from '../../components/admin/RequestCard'
+import { useSelector } from 'react-redux'
 
 const Contacts = () => {
+  let service = useSelector(state => state.service.value);
 
   const [contact, setContact] = useState([]);
   useEffect(() => {
@@ -23,9 +25,15 @@ const Contacts = () => {
         <Service className="container-fluid">
           <SidebarFilter IsService list={contact} />
           <Cards >
-            {contact?.map(ele => (
-              <RequestCard key={ele._id} country={ele.country} name={ele.name} date={ele.createdAt} service={ele?.service?.title || "No Service"} phone={ele.phone} email={ele.email} />
-            ))}
+            {contact?.map(ele => {
+              if (service === "all"){
+                return <RequestCard key={ele._id} country={ele.country} name={ele.name} date={ele.createdAt} service={ele?.service?.title || "No Service"} phone={ele.phone} email={ele.email} />
+              }
+              else if (service == ele.service?.title) {
+                return <RequestCard key={ele._id} country={ele.country} name={ele.name} date={ele.createdAt} service={ele?.service?.title || "No Service"} phone={ele.phone} email={ele.email} />
+              }
+            }
+            )}
           </Cards>
         </Service>
       </>

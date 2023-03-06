@@ -10,7 +10,7 @@ const NewCompanyDetailHeader = ({ name, company, companyType, country, details }
             <Content>مكان الانشاء : <span>{country}</span></Content>
             <Content>تفاصيل : <br /> <br /></Content>
             {details?.map((ele, index) => (
-                <Content key={index + ele?.answer}> {ele?.question}? <br />{ele?.answer} </Content>
+                <Content1 key={index + ele?.answer}> <h6>{ele?.question}</h6> <br />{ele?.answer} </Content1>
             ))}
         </Container>
     )
@@ -30,6 +30,18 @@ text-align: right;
 width: 70%;
 >span{
     font-weight: normal;
+}
+@media (max-width: 768px){
+width: 100%;
+}
+`;
+
+const Content1 = styled.div`
+text-align: right;
+width: 70%;
+>h6{
+    margin: 10px 0px;
+    padding:0px;
 }
 @media (max-width: 768px){
 width: 100%;

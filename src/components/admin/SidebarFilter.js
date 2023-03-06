@@ -37,6 +37,21 @@ const Container1 = styled.div`
 position:fixed;
 left:0px;
 width: 20%;
+max-height: 70vh;
+overflow-y: scroll;
+::-webkit-scrollbar-track {
+    border-radius: 0.125rem;
+    background-color: lightgray;
+  }
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+    border-radius: 0.125rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.125rem;
+    background-color: gray;};
+  
+
 @media (max-width: 1000px) {
 width: 30%;
 }

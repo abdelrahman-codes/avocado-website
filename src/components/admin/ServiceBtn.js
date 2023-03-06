@@ -6,8 +6,6 @@ import { set } from '../../slices/serviceSlice'
 const ServiceBtn = () => {
     const dispatch = useDispatch();
     const [service, setService] = useState([]);
-    const [all, setAll] = useState(false)
-    let filters = [];
     useEffect(() => {
         fetchData();
     }, [])
@@ -20,12 +18,12 @@ const ServiceBtn = () => {
         <>
             {service?.map(ele => (
                 <div key={ele._id} onClick={(e) => dispatch(set(ele.title))}>
-                    <input type="checkbox" className="btn-check" id={ele._id} autoComplete="off" />
-                    <label className="btn btn-outline-secondary my-1" htmlFor={ele._id}> {ele.title}</label>
+                    <input type="radio" name="serviceFilter" className="btn-check" id={ele._id} autoComplete="off" />
+                    <label className="btn btn-outline-secondary my-1 w-100" htmlFor={ele._id}> {ele.title}</label>
                 </div>
             ))}
 
-            <input type="checkbox" className="btn-check" id="Sev5" autoComplete="off" />
+            <input type="radio" name="serviceFilter" className="btn-check" id="Sev5" autoComplete="off" onClick={(e) => dispatch(set("all"))}/>
             <label className="btn btn-outline-secondary my-1" htmlFor="Sev5">الكل</label>
         </>
     )
