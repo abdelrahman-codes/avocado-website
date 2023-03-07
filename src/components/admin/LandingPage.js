@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import styled from 'styled-components';
-import { ImageUploader } from './ImageUploader';
+import ImageUploading from 'react-images-uploading';
 
 const LandingPage = () => {
 
     const [youtubeId, setYouTube] = useState("");
     const [slogan, setSlogan] = useState("");
     const [headerId, setHeaderId] = useState("")
+    const [socialId, setsocialId] = useState("")
     const [facebook, setFacebook] = useState("");
     const [instagram, setInstagram] = useState("");
     const [phone, setPhone] = useState("");
@@ -19,6 +20,16 @@ const LandingPage = () => {
     const [saved, setSaved] = useState(false);
 
 
+    const [loadingSocial, setSocial] = useState(false);
+    const [saveSocial, setSaveSocial] = useState(false);
+
+    const [loadingLocImg, setLoadingImg] = useState(false);
+    const [saveLocImg, setSaveImg] = useState(false);
+
+    const [imageLocation, setImageLocation] = React.useState([]);
+    const onChange = (imageList, addUpdateIndex) => {
+        setImageLocation(imageList);
+    };
     useEffect(() => {
         fetchHeader();
         fetchSocial();
@@ -40,9 +51,10 @@ const LandingPage = () => {
         setLocation(data?.Social.location)
         setPhone(data?.Social.phone)
         setPic(data?.Social.pic)
+        setsocialId(data.Social._id)
     }
 
-    const updateSocial = async () => {
+    const updateHeader = async () => {
         const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}header/${headerId}`, {
             youtubeId, slogan
         });
@@ -50,6 +62,42 @@ const LandingPage = () => {
         setTimeout(() => {
             setSaved(false)
         }, "5000");
+    }
+    const updateSocial = async () => {
+        setSocial(true);
+
+        const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}social/${socialId}`, {
+            facebook, instagram, phone, whatsapp, linkedin, location, email
+        });
+        // setFacebook(data?.Social.facebook)
+        // setInstagram(data?.Social.instagram)
+        // setLinkedin(data?.Social.linkedin)
+        // setEmail(data?.Social.email)
+        // setWhatsapp(data?.Social.whatsapp)
+        // setLocation(data?.Social.location)
+        // setPhone(data?.Social.phone)
+        // setPic(data?.Social.pic)
+        // setsocialId(data.Social._id)
+
+        setSocial(false)
+        setSaveSocial(true)
+        setTimeout(() => {
+            setSaveSocial(false)
+        }, "5000");
+
+    }
+    const updateLocation = async () => {
+        if (imageLocation.length) {
+            setLoadingImg(true)
+            let formData = new FormData();
+            formData.append("pic", imageLocation[0].file)
+            const { data } = await axios.patch(`${process.env.REACT_APP_BASE_URL}social/${socialId}`, formData);
+            setLoadingImg(false)
+            setSaveImg(true)
+            setTimeout(() => {
+                setSaveImg(false)
+            }, "5000");
+        }
     }
     return (
         <>
@@ -67,7 +115,7 @@ const LandingPage = () => {
                     }
 
                     <div className="d-flex justify-content-end">
-                        <Button className='my-2 ' onClick={() => updateSocial()}>حفظ</Button>
+                        <Button className='my-2 ' onClick={() => updateHeader()}>حفظ</Button>
                     </div>
                 </Container>
             </Landing>
@@ -93,48 +141,69 @@ const LandingPage = () => {
 
                     <Lable>الموقع</Lable>
                     <Input className="form-control" value={location} onChange={(e) => setLocation(e.target.value)} />
+                    {saveSocial &&
+                        <div className="d-flex justify-content-center my-2">
+                            <h6 style={{ color: "green" }}>تم الحفظ</h6>
+                        </div>
+                    }
 
-                    <Lable>صوره لخريطه الموقع</Lable>
-                    <ImageUploader />
                     <div className="d-flex justify-content-end">
-                        <Button className='my-2 '>حفظ</Button>
+                        <Button className='my-2 ' onClick={updateSocial}>{loadingSocial ? "تحميل..." : "حفظ"}</Button>
                     </div>
-
-                    {/* <Lable> البلاد</Lable>
-                    <Options>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                        <Option>مصر</Option>
-                    </Options>
-
-                    <Adding>
-                        <Button >اضافه</Button>
-                        <Input className="form-control" />
-                    </Adding>
-
-
-                    <Lable> انواع الشركات</Lable>
-                    <Options>
-                        <Option>الشركة المستحيلة</Option>
-                        <Option>الشركة القابضة</Option>
-                        <Option>الشركة القابضة</Option>
-                        <Option>الشركة المستحيلة</Option>
-                    </Options>
-
-                    <Adding>
-                        <Button >اضافه</Button>
-                        <Input className="form-control" />
-                    </Adding> */}
-
-
-
                 </Container>
+            </Landing>
+            <Landing className="container-fluid">
+                <Container >
+                    <Lable>صوره لخريطه الموقع</Lable>
 
+                    <ImageUploading
+                        multiple
+                        value={imageLocation}
+                        onChange={onChange}
+                        maxNumber={1}
+                        dataURLKey="data_url"
+                    >
+                        {({
+                            imageList,
+                            onImageUpload,
+                            onImageUpdate,
+                            onImageRemove,
+                            isDragging,
+                            dragProps,
+                        }) => (
+                            // write your building UI
+                            <>
+                                {imageList.length != 1 &&
+                                    <MainButton
+                                        style={isDragging ? { backgroundColor: 'red' } : undefined}
+                                        onClick={onImageUpload}
+                                        {...dragProps}
+                                    >
+                                        Click or Drop here
+                                    </MainButton>
+                                }
+                                {imageList.map((image, index) => (
+                                    <ImageContainer key={index} >
+                                        <BtnContainer >
+                                            <ButtonImg onClick={() => onImageUpdate(index)}>Update</ButtonImg>
+                                            <ButtonImg onClick={() => onImageRemove(index)}>Remove</ButtonImg>
+                                        </BtnContainer>
+                                        <Img src={image['data_url']} alt="" />
+
+                                    </ImageContainer>
+                                ))}
+                            </>
+                        )}
+                    </ImageUploading>
+                    {saveLocImg &&
+                        <div className="d-flex justify-content-center my-2">
+                            <h6 style={{ color: "green" }}>تم الحفظ</h6>
+                        </div>
+                    }
+                    <div className="d-flex justify-content-end">
+                        <Button className='my-2 ' onClick={updateLocation}>{loadingLocImg ? "تحميل..." : "حفظ"}</Button>
+                    </div>
+                </Container>
             </Landing>
         </>
     )
@@ -208,4 +277,34 @@ padding:7px 20px ;
 margin-right: 10px;
 border-radius: 15px;
 border: none;
+`;
+
+const MainButton = styled.button`
+border: none;
+padding:50px;
+border-radius:50px;
+width: 100%;
+margin-bottom: 20px;
+`;
+const ImageContainer = styled.div`
+width: 100%;
+`;
+const BtnContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+align-items: center;
+`;
+const ButtonImg = styled.button`
+border: none;
+border-radius: 5px;
+margin:5px;
+width: 100%;
+`;
+const Img = styled.img`
+height: 250px;
+width: 100%;
+border-radius: 25px;
+margin-bottom: 20px;
+margin-top: 20px;
 `;

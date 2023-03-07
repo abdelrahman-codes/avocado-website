@@ -12,6 +12,9 @@ const Dashboard = () => {
                 <LandingPage />
                 <Sections />
                 <AddSection />
+{/* 
+                <Sections />
+                <AddSection /> */}
             </div>
         </>
     )

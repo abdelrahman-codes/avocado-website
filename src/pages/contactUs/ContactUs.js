@@ -46,7 +46,7 @@ const ContactUs = () => {
                             <Icon>
                                 <WhatsAppIcon />
                             </Icon>
-                            {social?.phone}
+                            {social?.whatsapp}
 
                         </ContactDetails>
 

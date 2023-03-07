@@ -1,21 +1,102 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
-import { ImageUploader } from './ImageUploader';
+import ImageUploading from 'react-images-uploading';
+import axios from 'axios';
+import { set } from '../../slices/sectionNameSlice'
+import { useDispatch } from 'react-redux';
+
 
 const AddSection = () => {
+    const dispatch = useDispatch()
+    const [images, setImages] = React.useState([]);
+
+    const onChange = (imageList, addUpdateIndex) => {
+        setImages(imageList);
+    };
+
+    const [title, setTitle] = useState("")
+    const [desc, setDesc] = useState("")
+
+    const [loading, setLoading] = useState(false)
+    const [saved, setSaved] = useState(false)
+    const addSection = async () => {
+        if (images.length && title !== "" && desc !== "") {
+            setLoading(true)
+            let formData = new FormData();
+            formData.append("pic", images[0].file);
+            formData.append("title", title);
+            formData.append("desc", desc);
+            const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}section`, formData);
+            dispatch(set(data.section))
+            setLoading(false)
+            setSaved(true)
+            setTimeout(() => {
+                setSaved(false)
+            }, "5000");
+
+        }
+    }
+
+
     return (
         <Section className="container-fluid">
             <Container>
                 <Lable>عنوان السكشن</Lable>
-                <Input className="form-control" />
+                <Input className="form-control" onChange={(e) => setTitle(e.target.value)} />
 
                 <Lable> الوصف</Lable>
-                <Input className="form-control" />
+                <Input className="form-control" onChange={(e) => setDesc(e.target.value)} />
 
                 <Lable>الصوره</Lable>
-                <ImageUploader />
+
+                <ImageUploading
+                    multiple
+                    value={images}
+                    onChange={onChange}
+                    maxNumber={1}
+                    dataURLKey="data_url"
+                >
+                    {({
+                        imageList,
+                        onImageUpload,
+                        onImageUpdate,
+                        onImageRemove,
+                        isDragging,
+                        dragProps,
+                    }) => (
+                        // write your building UI
+                        <>
+                            {imageList.length != 1 &&
+                                <MainButton
+                                    style={isDragging ? { backgroundColor: 'red' } : undefined}
+                                    onClick={onImageUpload}
+                                    {...dragProps}
+                                >
+                                    Click or Drop here
+                                </MainButton>
+                            }
+                            {imageList.map((image, index) => (
+                                <ImageContainer key={index} >
+                                    <BtnContainer >
+                                        <ButtonImg onClick={() => onImageUpdate(index)}>Update</ButtonImg>
+                                        <ButtonImg onClick={() => onImageRemove(index)}>Remove</ButtonImg>
+                                    </BtnContainer>
+                                    <Img src={image['data_url']} alt="" />
+
+                                </ImageContainer>
+                            ))}
+                        </>
+                    )}
+                </ImageUploading>
+
+                {saved &&
+                    <div className="d-flex justify-content-center my-2">
+                        <h6 style={{ color: "green" }}>تم الحفظ</h6>
+                    </div>
+                }
+
                 <div className="d-flex justify-content-end">
-                    <Button className='my-2 '>حفظ</Button>
+                    <Button className='my-2 ' onClick={addSection}>{loading ? "تحميل..." : "حفظ"}</Button>
                 </div>
             </Container>
         </Section>
@@ -66,4 +147,34 @@ padding:7px 20px ;
 margin-right: 10px;
 border-radius: 15px;
 border: none;
+`;
+
+const MainButton = styled.button`
+border: none;
+padding:50px;
+border-radius:50px;
+width: 100%;
+margin-bottom: 20px;
+`;
+const ImageContainer = styled.div`
+width: 100%;
+`;
+const BtnContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+align-items: center;
+`;
+const ButtonImg = styled.button`
+border: none;
+border-radius: 5px;
+margin:5px;
+width: 100%;
+`;
+const Img = styled.img`
+height: 250px;
+width: 100%;
+border-radius: 25px;
+margin-bottom: 20px;
+margin-top: 20px;
 `;

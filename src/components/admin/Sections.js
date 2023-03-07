@@ -1,27 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { set } from '../../slices/sectionNameSlice'
 const Sections = () => {
-    const [section, setSection] = useState([])
-    const [loading, setLoading] = useState(1)
+    const dispatch = useDispatch();
+    let sectionName = useSelector(state => state.sectionName.value)
     const [deleteSec, setDeleteSec] = useState("")
     useEffect(() => {
         fetchSection();
-    }, [loading])
+    }, [])
     const fetchSection = async () => {
         const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}section`);
-        setSection(data?.section)
+        dispatch(set(data?.section))
     }
     const deleteSection = async () => {
         const { data } = await axios.delete(`${process.env.REACT_APP_BASE_URL}section/${deleteSec}`);
-        setLoading(loading + 1);
+        dispatch(set(data?.section))
     }
     return (
         <Section className="container-fluid">
             <Container>
                 <Lable>سكاشن الموقع</Lable>
                 <Options>
-                    {section?.map(sec => (
+                    {sectionName?.map(sec => (
                         <Option data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                             key={sec._id}
                             onClick={() => setDeleteSec(sec._id)}

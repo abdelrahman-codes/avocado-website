@@ -1,13 +1,9 @@
 import React, { useImperativeHandle } from 'react';
 import ImageUploading from 'react-images-uploading';
 import styled from 'styled-components';
-import Pic from '../../assets/upload.png'
-export function ImageUploader({ form, pic }) {
+export function ImageUploader({ section, length }) {
     const [images, setImages] = React.useState([]);
-    // let maxNumber = 5;
-    // form ? maxNumber = 5 :maxNumber = 1;
     const onChange = (imageList, addUpdateIndex) => {
-        // data for submit
         console.log(imageList, addUpdateIndex);
         setImages(imageList);
     };
@@ -17,7 +13,7 @@ export function ImageUploader({ form, pic }) {
                 multiple
                 value={images}
                 onChange={onChange}
-                maxNumber={5}
+                maxNumber={length}
                 dataURLKey="data_url"
             >
                 {({
@@ -30,15 +26,7 @@ export function ImageUploader({ form, pic }) {
                 }) => (
                     // write your building UI
                     <>
-                        {form
-                            ? <MainButton
-                                style={isDragging ? { backgroundColor: 'red' } : undefined}
-                                onClick={onImageUpload}
-                                {...dragProps}
-                            >
-                                <img style={{ maxWidth: "100px" }} src={Pic} alt="uploader" />
-                            </MainButton>
-                            : !imageList.length &&
+                        {imageList.length != length &&
                             <MainButton
                                 style={isDragging ? { backgroundColor: 'red' } : undefined}
                                 onClick={onImageUpload}
@@ -47,7 +35,6 @@ export function ImageUploader({ form, pic }) {
                                 Click or Drop here
                             </MainButton>
                         }
-
                         {imageList.map((image, index) => (
                             <ImageContainer key={index} >
                                 <BtnContainer >
@@ -64,10 +51,8 @@ export function ImageUploader({ form, pic }) {
         </Uploader>
     );
 }
-
 const Uploader = styled.div`
 `;
-
 const MainButton = styled.button`
 border: none;
 padding:50px;
@@ -75,7 +60,6 @@ border-radius:50px;
 width: 100%;
 margin-bottom: 20px;
 `;
-
 const ImageContainer = styled.div`
 width: 100%;
 `;
@@ -91,7 +75,6 @@ border-radius: 5px;
 margin:5px;
 width: 100%;
 `;
-
 const Img = styled.img`
 height: 250px;
 width: 100%;
