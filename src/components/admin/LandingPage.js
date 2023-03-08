@@ -17,7 +17,8 @@ const LandingPage = () => {
     const [whatsapp, setWhatsapp] = useState("");
     const [linkedin, setLinkedin] = useState("");
     const [location, setLocation] = useState("");
-    const [pic, setPic] = useState("");
+    const [map, setMap] = useState("");
+    // const [pic, setPic] = useState("");
     const [email, setEmail] = useState("");
     const [saved, setSaved] = useState(false);
 
@@ -53,7 +54,7 @@ const LandingPage = () => {
         setWhatsapp(data?.Social.whatsapp)
         setLocation(data?.Social.location)
         setPhone(data?.Social.phone)
-        setPic(data?.Social.pic)
+        setMap(data?.Social.map)
         setsocialId(data.Social._id)
     }
 
@@ -70,7 +71,7 @@ const LandingPage = () => {
         setSocial(true);
 
         const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}social/${socialId}`, {
-            facebook, instagram, phone, whatsapp, linkedin, location, email
+            facebook, instagram, phone, whatsapp, linkedin, location, email ,map
         });
         // setFacebook(data?.Social.facebook)
         // setInstagram(data?.Social.instagram)
@@ -89,19 +90,19 @@ const LandingPage = () => {
         }, "5000");
 
     }
-    const updateLocation = async () => {
-        if (imageLocation.length) {
-            setLoadingImg(true)
-            let formData = new FormData();
-            formData.append("pic", imageLocation[0].file)
-            const { data } = await axios.patch(`${process.env.REACT_APP_BASE_URL}social/${socialId}`, formData);
-            setLoadingImg(false)
-            setSaveImg(true)
-            setTimeout(() => {
-                setSaveImg(false)
-            }, "5000");
-        }
-    }
+    // const updateLocation = async () => {
+    //     if (imageLocation.length) {
+    //         setLoadingImg(true)
+    //         let formData = new FormData();
+    //         formData.append("pic", imageLocation[0].file)
+    //         const { data } = await axios.patch(`${process.env.REACT_APP_BASE_URL}social/${socialId}`, formData);
+    //         setLoadingImg(false)
+    //         setSaveImg(true)
+    //         setTimeout(() => {
+    //             setSaveImg(false)
+    //         }, "5000");
+    //     }
+    // }
     return (
         <>
             <Landing className="container-fluid" style={{ marginTop: "100px" }}>
@@ -146,6 +147,9 @@ const LandingPage = () => {
 
                     <Lable>الموقع</Lable>
                     <Input className="form-control" value={location} onChange={(e) => setLocation(e.target.value)} />
+
+                    <Lable>لينك الموقع</Lable>
+                    <Input className="form-control" value={map} onChange={(e) => setMap(e.target.value)} />
                     {saveSocial &&
                         <div className="d-flex justify-content-center my-2">
                             <h6 style={{ color: "green" }}>تم الحفظ</h6>
@@ -157,7 +161,7 @@ const LandingPage = () => {
                     </div>
                 </Container>
             </Landing>
-            <Landing className="container-fluid">
+            {/* <Landing className="container-fluid">
                 <Container >
                     <Lable>صوره لخريطه الموقع</Lable>
 
@@ -209,7 +213,7 @@ const LandingPage = () => {
                         <Button className='my-2 ' onClick={updateLocation}>{loadingLocImg ? "تحميل..." : "حفظ"}</Button>
                     </div>
                 </Container>
-            </Landing>
+            </Landing> */}
         </>
     )
 }
