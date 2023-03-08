@@ -6,8 +6,11 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ServiceFooter = () => {
+    const language = useSelector(state => state.language.value)
+
     const { id } = useParams()
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -42,9 +45,18 @@ const ServiceFooter = () => {
     return (
         <Footer>
             <FooterContainer className="container">
-                <FAQ>If you have any qustions or need any help <br />
-                    please leave your info and we will contact with you
-                </FAQ>
+                {language === "E"
+                    ? <FAQ>
+                        If you have any qustions or need any help <br />
+                        please leave your info and we will contact with you
+                    </FAQ>
+                    : <FAQ>
+                        إذا كان لديك أي استفسارات أو تحتاج إلى أي مساعدة<br />
+                        يرجى ترك معلوماتك وسنتواصل معك
+
+                    </FAQ>
+                }
+
 
                 <FooterContent>
 
@@ -79,20 +91,37 @@ const ServiceFooter = () => {
 
                     </Contact>
 
-                    <Form>
-                        <Input className="form-control" placeholder="Name" onChange={(e) => setName(e.target.value)} />
-                        <Input className="form-control" placeholder="Phone" type="number" onChange={(e) => setPhone(e.target.value)} />
-                        <Input className="form-control" placeholder="Countery" onChange={(e) => setCountry(e.target.value)} />
-                        <Input className="form-control" placeholder="Email" type="Email" onChange={(e) => setEmail(e.target.value)} />
+                    {language === "E"
+                        ? <Form>
+                            <Input className="form-control" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                            <Input className="form-control" placeholder="Phone" type="number" onChange={(e) => setPhone(e.target.value)} />
+                            <Input className="form-control" placeholder="Countery" onChange={(e) => setCountry(e.target.value)} />
+                            <Input className="form-control" placeholder="Email" type="Email" onChange={(e) => setEmail(e.target.value)} />
 
-                        {error && <Message >Please fill all fields</Message>}
-                        {saved
-                            ? "We will contact you soon!"
-                            : <Button
-                                onClick={contactUs}
-                            >{loading ? "loading" : "Send"}</Button>
-                        }
-                    </Form>
+                            {error && <Message >Please fill all fields</Message>}
+                            {saved
+                                ? "We will contact you soon!"
+                                : <Button
+                                    onClick={contactUs}
+                                >{loading ? "loading" : "Send"}</Button>
+                            }
+                        </Form>
+                        : <Form>
+                            <Input style={{ textAlign: "right" }} className="form-control" placeholder="الاسم" onChange={(e) => setName(e.target.value)} />
+                            <Input style={{ textAlign: "right" }} className="form-control" placeholder="الهاتف" type="number" onChange={(e) => setPhone(e.target.value)} />
+                            <Input style={{ textAlign: "right" }} className="form-control" placeholder="البلد" onChange={(e) => setCountry(e.target.value)} />
+                            <Input style={{ textAlign: "right" }} className="form-control" placeholder="البريد" type="Email" onChange={(e) => setEmail(e.target.value)} />
+
+                            {error && <Message >Please fill all fields</Message>}
+                            {saved
+                                ? "سوف نتصل بك قريبا!"
+                                : <Button
+                                    onClick={contactUs}
+                                >{loading ? "تحميل" : "ارسال"}</Button>
+                            }
+                        </Form>
+                    }
+
 
                 </FooterContent>
             </FooterContainer>
@@ -104,7 +133,7 @@ const ServiceFooter = () => {
 export default ServiceFooter;
 
 const Footer = styled.footer`
-background-color: #DCDCDC;
+background-color: #89664C;
 width: 100%;
 `;
 const FooterContainer = styled.div`
@@ -160,7 +189,7 @@ flex:.6;
 display: flex;
 flex-direction: column;
 align-items:center;
-background-color: #858585;
+background-color: #DEDEE1;
 border-radius:20px;
 padding: 25px;
 @media (max-width: 1000px) {
@@ -202,6 +231,7 @@ border-radius: 20px;
 padding:15px 50px;
 font-weight: bold;
 font-size:16px;
+background-color: #699635;
  `;
 
 const Message = styled.h6`

@@ -8,7 +8,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { useSelector } from 'react-redux';
 const MainFooter = () => {
+    const language = useSelector(state => state.language.value)
     const [social, setSocial] = useState([]);
     useEffect(() => {
         fetchData();
@@ -30,14 +32,14 @@ const MainFooter = () => {
                     </Link>
 
                     <Navs>
-                        <NavLink className="nav-link" to="/"> Home</NavLink>
-                        <NavLink className="nav-link" to="/register-company"> Register Company</NavLink>
-                        <NavLink className="nav-link" to="/services"> Other Services</NavLink>
-                        <NavLink className="nav-link" to="/contact-us"> Contact Us</NavLink>
+                        <NavLink className="nav-link" to="/">{language === "E" ? "Home" : "الرائيسية"} </NavLink>
+                        <NavLink className="nav-link" to="/register-company">{language === "E" ? "Register Company" : "تسجيل شركة"} </NavLink>
+                        <NavLink className="nav-link" to="/services">{language === "E" ? "Other Services" : "خدمات اخري"} </NavLink>
+                        <NavLink className="nav-link" to="/contact-us">{language === "E" ? "Contact Us" : "تواصل معنا"} </NavLink>
                     </Navs>
                 </FooterNavs>
                 <FooterSocial>
-                    <p>Copyright © 2022. All Rights Reserved</p>
+                    <p>{language === "E" ? "Copyright © 2023. All Rights Reserved" : "حقوق الطبع والنشر © 2023. جميع الحقوق محفوظة"}</p>
                     <Social>
                         <a className="nav-link" href={social?.linkedin} target="_blank" rel="noopener noreferrer">
                             <LinkedInIcon />
@@ -69,7 +71,7 @@ export default MainFooter;
 const Footer = styled.footer`
 padding-top: 90px;
 padding-bottom: 90px;
-background-color: #DCDCDC;
+background-color: #89664C;
 `;
 const FooterContainer = styled.div`
 @media (max-width:600px){

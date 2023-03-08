@@ -9,7 +9,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ContactUsForm from '../../components/ContactUsForm';
 import Navbar from '../../components/navbar/Navbar';
 import MainFooter from '../../components/footer/MainFooter';
+import { useSelector } from 'react-redux';
 const ContactUs = () => {
+    const language = useSelector(state => state.language.value)
     const [social, setSocial] = useState([]);
     useEffect(() => {
         fetchData();
@@ -22,48 +24,100 @@ const ContactUs = () => {
         <>
             <Navbar />
             <Contact className="container">
-                <LeftSide>
-                    <FAQ>
-                        leave your information and  we will contact with your soon
-                        or you can also contact us on
-                    </FAQ>
-                    <ContactInfo>
-                        <ContactDetails>
-                            <Icon>
-                                <PhoneIcon />
-                            </Icon>
-                            {social?.phone}
-                        </ContactDetails>
+                {language === "A" &&
+                    <>
+                        <ContactUsForm />
+                        <LeftSide className=" align-items-end" style={{ textAlign: "right" }}>
+                            <FAQ >
+                            اترك معلوماتك وسنتواصل معك قريبًا أو يمكنك أيضًا الاتصال بنا على
 
-                        <ContactDetails>
-                            <Icon>
-                                <MailIcon />
-                            </Icon>
-                            {social?.email}
-                        </ContactDetails>
+                            </FAQ>
+                            <ContactInfo >
+                                <ContactDetails>
+                                    {social?.phone}
+                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                        <PhoneIcon />
+                                    </Icon>
+                                </ContactDetails>
 
-                        <ContactDetails>
-                            <Icon>
-                                <WhatsAppIcon />
-                            </Icon>
-                            {social?.whatsapp}
+                                <ContactDetails>
+                                    {social?.email}
+                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                        <MailIcon />
+                                    </Icon>
+                                </ContactDetails>
 
-                        </ContactDetails>
+                                <ContactDetails>
+                                    {social?.whatsapp}
+                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                        <WhatsAppIcon />
+                                    </Icon>
 
-                        <ContactDetails>
-                            <Icon>
-                                <LocationOnIcon />
-                            </Icon>
-                            {social?.location}
-                        </ContactDetails>
+                                </ContactDetails>
 
-                    </ContactInfo>
-                    <Map
-                        src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
-                        alt="location image"
-                    />
-                </LeftSide>
-                <ContactUsForm />
+                                <ContactDetails>
+                                    {social?.location}
+                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                        <LocationOnIcon />
+                                    </Icon>
+                                </ContactDetails>
+
+                            </ContactInfo>
+                            <Map
+                                src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
+                                alt="location image"
+                            />
+                        </LeftSide>
+                    </>
+                }
+
+
+                {language === "E" &&
+                    <>
+                        <LeftSide>
+                            <FAQ>
+                                leave your information and  we will contact with your soon
+                                or you can also contact us on
+                            </FAQ>
+                            <ContactInfo>
+                                <ContactDetails>
+                                    <Icon>
+                                        <PhoneIcon />
+                                    </Icon>
+                                    {social?.phone}
+                                </ContactDetails>
+
+                                <ContactDetails>
+                                    <Icon>
+                                        <MailIcon />
+                                    </Icon>
+                                    {social?.email}
+                                </ContactDetails>
+
+                                <ContactDetails>
+                                    <Icon>
+                                        <WhatsAppIcon />
+                                    </Icon>
+                                    {social?.whatsapp}
+
+                                </ContactDetails>
+
+                                <ContactDetails>
+                                    <Icon>
+                                        <LocationOnIcon />
+                                    </Icon>
+                                    {social?.location}
+                                </ContactDetails>
+
+                            </ContactInfo>
+                            <Map
+                                src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
+                                alt="location image"
+                            />
+                        </LeftSide>
+                        <ContactUsForm />
+                    </>
+                }
             </Contact>
             <MainFooter />
         </>

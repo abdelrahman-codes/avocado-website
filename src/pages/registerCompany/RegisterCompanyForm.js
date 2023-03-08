@@ -6,18 +6,20 @@ import Pic from '../../assets/ill2.png'
 import RegisterCompanyRightSide from '../../components/RegisterCompanyRightSide'
 import RegisterCompanyFormSection from '../../components/RegisterCompanyFormSection'
 const RegisterCompanyForm = () => {
+  
+
   return (
     <>
-    <Navbar />
-    <Company className="container">
+      <Navbar />
+      <Company className="container">
         <LeftSide className="shadow">
-            <RegisterCompanyFormSection />
+          <RegisterCompanyFormSection />
         </LeftSide>
         <RegisterCompanyRightSide content2 pic={Pic} />
-    </Company>
+      </Company>
 
-    <MainFooter />
-</>
+      <MainFooter />
+    </>
   )
 }
 

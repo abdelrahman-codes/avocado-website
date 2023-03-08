@@ -1,6 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useSelector } from "react-redux";
+
+
 const HomeSections = ({ right, section }) => {
+    const language = useSelector(state => state.language.value)
+
     return (
         < >
             {!right ?
@@ -12,12 +17,13 @@ const HomeSections = ({ right, section }) => {
                                 alt="sectionPic"
                             />
                         </SectionPicture>
-                        <SectionDetails>
-                            <SectionTile>
-                                {section?.title}
+                        <SectionDetails style={language === "E" ? { textAlign: "left" } : { textAlign: "right" }}>
+                            <SectionTile  >
+                                {language === "E" ? section?.title : section?.titleAr}
+
                             </SectionTile>
-                            <SectionDesc>
-                                {section?.desc}
+                            <SectionDesc >
+                                {language === "E" ? section?.desc : section?.descAr}
                             </SectionDesc>
                         </SectionDetails>
                     </SectionContainer>
@@ -25,12 +31,12 @@ const HomeSections = ({ right, section }) => {
                 :
                 <LeftSections>
                     <SectionContainerRight>
-                        <SectionDetails>
+                        <SectionDetails style={language === "E" ? { textAlign: "left" } : { textAlign: "right" }}>
                             <SectionTile>
-                                {section?.title}
+                                {language === "E" ? section?.title : section?.titleAr}
                             </SectionTile>
                             <SectionDesc>
-                                {section?.desc}
+                                {language === "E" ? section?.desc : section?.descAr}
                             </SectionDesc>
                         </SectionDetails>
                         <SectionPicture>
@@ -69,7 +75,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-background-color: #DCDCDC;
+background-color: #EBD300;
 border-radius: 20px;
 border-top-left-radius: 70px;
 min-height: 429px;
@@ -85,7 +91,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-background-color: #DCDCDC;
+background-color: #EBD300;
 border-radius: 20px;
 border-top-right-radius: 70px;
 min-height: 429px;
@@ -107,6 +113,7 @@ height: 100%;
 `;
 const SectionTile = styled.h2`
 margin-bottom: 20px;
+width: 100%;
 @media (max-width: 400px) {
     font-size: 20px;
   }

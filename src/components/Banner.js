@@ -3,8 +3,11 @@ import axios from 'axios'
 import Iframe from 'react-iframe'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const Banner = () => {
+  const language = useSelector(state => state.language.value)
+
   const [banner, setBanner] = useState([]);
   useEffect(() => {
     fetchData();
@@ -29,7 +32,7 @@ const Banner = () => {
         <BannerDetails>
           <Slogan>{banner?.slogan}</Slogan>
           <Link className='nav-link' to='/register-company'>
-            <Register >Register company Now</Register>
+            <Register >{language === "E" ? "Register company Now" : "سجل الشركة الآن"}</Register>
           </Link>
         </BannerDetails>
 
@@ -86,7 +89,7 @@ align-items: center;
 
 const Register = styled.button`
 padding: 20px 35px;
-background-color: #DCDCDC;
+background-color: #699635;
 font-size: 16px;
 font-weight:500;
 border: none;

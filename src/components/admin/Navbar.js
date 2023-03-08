@@ -4,7 +4,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 const Navbar = () => {
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-light  fixed-top" style={{backgroundColor:"#699635"}}>
             <div className="container">
                 <Link className="nav-link" to="/">
                     <img src={logoPic} alt="Avocado-logo" />

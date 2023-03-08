@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { useSelector } from 'react-redux';
 const ServiceCard = ({ service }) => {
+    const language = useSelector(state => state.language.value)
     return (
         <Link className="nav-link" to={`/services/${service._id}`}>
-            <Card>
-                <CardTitle>{service?.title}</CardTitle>
-                <CardDesc>
-                    {service?.desc}
+            <Card >
+                <CardTitle>{language === "E" ? service?.title : service?.titleAr}</CardTitle>
+                <CardDesc >
+                    {language === "E" ? service?.desc : service?.descAr}
                 </CardDesc>
             </Card>
         </Link>
@@ -21,7 +22,7 @@ const Card = styled.div`
 text-align: center;
 padding: 25px;
 border-radius:20px;
-background-color: #DCDCDC;
+background-color: #699635;
 margin:20px 25px;
 
 @media (max-width: 900px) {

@@ -5,8 +5,11 @@ import MainFooter from '../../components/footer/MainFooter';
 import ServiceFooter from '../../components/footer/ServiceFooter';
 import Navbar from '../../components/navbar/Navbar';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ServiceDetails = () => {
+    const language = useSelector(state => state.language.value)
+
     let { id } = useParams();
     const [service, setService] = useState([]);
     useEffect(() => {
@@ -19,8 +22,8 @@ const ServiceDetails = () => {
     return (
         <>
             <Navbar />
-            <Details className="container">
-                {service?.desc}
+            <Details style={language === "E" ? { textAlign: "left" } : { textAlign: "right" }} className="container">
+                {language === "E" ? service?.desc : service?.descAr}
             </Details>
             <ServiceFooter />
             <MainFooter />

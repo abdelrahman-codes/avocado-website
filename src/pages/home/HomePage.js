@@ -6,6 +6,7 @@ import HomeSections from "../../components/HomeSections";
 import Navbar from "../../components/navbar/Navbar";
 
 const HomePage = () => {
+
     const [section, setSection] = useState([]);
     useEffect(() => {
         fetchData();

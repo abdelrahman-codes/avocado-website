@@ -36,8 +36,8 @@ const TempletsRightSide = () => {
     return (
         <Container className="container-fluid">
             <Btn>
-                <button className="btn btn-secondary m-2" onClick={() => { setRemove(true) }}>مسح نموذج</button>
-                <button className="btn btn-secondary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">اضافه نموذج جديد +</button>
+                <button className="btn m-2" onClick={() => { setRemove(true) }}>مسح نموذج</button>
+                <button className="btn m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">اضافه نموذج جديد +</button>
             </Btn>
             <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -96,6 +96,9 @@ display: flex;
 flex-wrap: wrap;
 width: 100%;
 justify-content: flex-end;
+>button{
+background-color: #FFCE31;
+}
 `
 const Cards = styled.div`
 display:flex;
@@ -127,7 +130,7 @@ transition: all .3s ease;
 `
 
 const Card = styled.div`
-background-color:#DCDCDC;
+background-color:#699635;
 border-radius: 20px;
 width: 200px;
 height: 200px;

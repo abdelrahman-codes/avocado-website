@@ -2,18 +2,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import ImageUploading from 'react-images-uploading';
 import axios from 'axios';
-import { set } from '../../slices/sectionNameSlice'
+import { set } from '../../slices/serviceArrSlice'
 import { useDispatch } from 'react-redux';
 
 
-const AddSection = () => {
+const AddService = () => {
     const dispatch = useDispatch()
-    const [images, setImages] = React.useState([]);
-
-    const onChange = (imageList, addUpdateIndex) => {
-        setImages(imageList);
-    };
-
     const [title, setTitle] = useState("")
     const [titleAr, setTitleAr] = useState("")
     const [desc, setDesc] = useState("")
@@ -21,17 +15,14 @@ const AddSection = () => {
 
     const [loading, setLoading] = useState(false)
     const [saved, setSaved] = useState(false)
-    const addSection = async () => {
-        if (images.length && title !== "" && desc !== "") {
+
+    const addService = async () => {
+        if (title !== "" && desc !== "" && descAr !== "" && titleAr !== "") {
             setLoading(true)
-            let formData = new FormData();
-            formData.append("pic", images[0].file);
-            formData.append("title", title);
-            formData.append("titleAr", titleAr);
-            formData.append("desc", desc);
-            formData.append("descAr", descAr);
-            const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}section`, formData);
-            dispatch(set(data.section))
+            const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}service`, {
+                title, titleAr, desc, descAr
+            });
+            dispatch(set(data.service))
             setLoading(false)
             setSaved(true)
             setTimeout(() => {
@@ -45,7 +36,7 @@ const AddSection = () => {
     return (
         <Section className="container-fluid">
             <Container>
-                <Lable>عنوان السكشن</Lable>
+                <Lable>عنوان الخدمة</Lable>
                 <Input className="form-control" onChange={(e) => setTitleAr(e.target.value)} />
                 <Lable> الوصف</Lable>
                 <Input className="form-control" onChange={(e) => setDescAr(e.target.value)} />
@@ -55,48 +46,6 @@ const AddSection = () => {
                 <Lable> description</Lable>
                 <Input className="form-control" onChange={(e) => setDesc(e.target.value)} />
 
-                <Lable>الصوره</Lable>
-
-                <ImageUploading
-                    multiple
-                    value={images}
-                    onChange={onChange}
-                    maxNumber={1}
-                    dataURLKey="data_url"
-                >
-                    {({
-                        imageList,
-                        onImageUpload,
-                        onImageUpdate,
-                        onImageRemove,
-                        isDragging,
-                        dragProps,
-                    }) => (
-                        // write your building UI
-                        <>
-                            {imageList.length != 1 &&
-                                <MainButton
-                                    style={isDragging ? { backgroundColor: 'red' } : undefined}
-                                    onClick={onImageUpload}
-                                    {...dragProps}
-                                >
-                                    Click or Drop here
-                                </MainButton>
-                            }
-                            {imageList.map((image, index) => (
-                                <ImageContainer key={index} >
-                                    <BtnContainer >
-                                        <ButtonImg onClick={() => onImageUpdate(index)}>Update</ButtonImg>
-                                        <ButtonImg onClick={() => onImageRemove(index)}>Remove</ButtonImg>
-                                    </BtnContainer>
-                                    <Img src={image['data_url']} alt="" />
-
-                                </ImageContainer>
-                            ))}
-                        </>
-                    )}
-                </ImageUploading>
-
                 {saved &&
                     <div className="d-flex justify-content-center my-2">
                         <h6 style={{ color: "green" }}>تم الحفظ</h6>
@@ -104,14 +53,14 @@ const AddSection = () => {
                 }
 
                 <div className="d-flex justify-content-end">
-                    <Button className='my-2 ' onClick={addSection}>{loading ? "تحميل..." : "حفظ"}</Button>
+                    <Button className='my-2 ' onClick={addService}>{loading ? "تحميل..." : "حفظ"}</Button>
                 </div>
             </Container>
         </Section>
     )
 }
 
-export default AddSection;
+export default AddService;
 const Section = styled.div`
 display: flex;
 justify-content: flex-end;

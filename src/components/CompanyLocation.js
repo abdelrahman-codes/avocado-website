@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const CompanyLocation = () => {
+    const language = useSelector(state => state.language.value)
+
     const [country, setCountry] = useState([]);
 
     useEffect(() => {
@@ -20,9 +23,19 @@ const CompanyLocation = () => {
     }
     return (
         <Container>
-            <h1>Register Company</h1>
-            <p>Choose company location</p>
-            <p> Where do you want to form this company?</p>
+            {language === "E"
+                ? <>
+                    <h1>Register Company</h1>
+                    <p>Choose company location</p>
+                    <p> Where do you want to form this company?</p>
+                </>
+                : <>
+                    <h1 style={{textAlign: 'right'}}>تسجيل الشركة</h1>
+                    <p style={{textAlign: 'right'}}>اختار موقع الشركة</p>
+                    <p style={{textAlign: 'right'}}> أين تريد أن تؤسس هذه الشركة؟</p>
+                </>
+            }
+
 
             <Row>
                 {country?.map(ele => (

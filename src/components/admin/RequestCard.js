@@ -66,7 +66,7 @@ padding: 10px 20px;
 margin: 0px 20px;
 border-radius:25px;
 min-width:50%;
-background-color: #DCDCDC;
+background-color: #C7E755;
 display: flex;
 align-items: center;
 justify-content: center;
