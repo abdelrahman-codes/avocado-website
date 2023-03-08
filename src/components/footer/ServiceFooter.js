@@ -15,7 +15,7 @@ const ServiceFooter = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [country, setCountry] = useState("");
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("Not mentioned");
     const [social, setSocial] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -30,9 +30,10 @@ const ServiceFooter = () => {
     }
 
     const contactUs = async () => {
-        if (name === "" || email === "" || country === "" || phone === "") {
+        if (name === "" || country === "" || phone === "") {
             setError(true)
         } else {
+            if (email === "") { setEmail("Not mentioned") }
             setError(false)
             setLoading(true)
             const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}contact-us`, {

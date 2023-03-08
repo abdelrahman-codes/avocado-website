@@ -155,7 +155,7 @@ const RegisterCompanyFormSection = () => {
                                 <>
                                     {language === "E"
                                         ? <h4 key={section.title + index}>{section.title}</h4>
-                                        : <h4 key={section.title + index} style={{ textAlign: 'right', borderLeft: "none", borderRight: "10px solid #89664C", marginRight: "5px", marginLeft: "0px" }}>{section.title}</h4>
+                                        : <h4 key={section.title + index} style={{ textAlign: 'right', borderLeft: "none", borderRight: "10px solid #89664C", marginRight: "5px", marginLeft: "0px" }}>{section.titleAr || section.title}</h4>
                                     }
 
                                     {questions.map((question, index) => {
@@ -239,7 +239,7 @@ const RegisterCompanyFormSection = () => {
                         <div className={`d-flex align-items-start  ${language === "A" && "justify-content-end"}`}>
                             {templates?.map(ele => (
                                 <Card key={ele._id} onClick={() => fetchSections(ele._id, ele.name)}>
-                                    <h4>{ele.name}</h4>
+                                    <h4>{language === "E" ? ele?.name : (ele?.nameAr || ele?.name)}</h4>
                                 </Card>
                             ))}
                         </div>

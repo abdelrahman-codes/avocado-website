@@ -10,6 +10,7 @@ const TempletsRightSide = () => {
     const [remove, setRemove] = useState(false)
     const [template, setTemplate] = useState([]);
     const [name, setname] = useState("");
+    const [nameAr, setnameAr] = useState("");
 
     useEffect(() => {
         fetchData();
@@ -20,9 +21,9 @@ const TempletsRightSide = () => {
     }
 
     const addTemplate = async () => {
-        if (name !== "") {
+        if (name !== "" && nameAr !== "") {
             const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}template`, {
-                name, country
+                name, country,nameAr
             });
             setTemplate(data.template)
         }
@@ -48,7 +49,8 @@ const TempletsRightSide = () => {
                         </div>
 
                         <div className="modal-body">
-                            <input type="text" className="form-control" placeholder="اسم النموذج" onChange={(e) => setname(e.target.value)} />
+                            <input type="text" className="form-control my-2" placeholder="اسم النموذج بالعربي" onChange={(e) => setnameAr(e.target.value)} />
+                            <input type="text" className="form-control" placeholder="اسم النموذج بالانجليزي" onChange={(e) => setname(e.target.value)} />
                         </div>
 
                         <div className="modal-footer">

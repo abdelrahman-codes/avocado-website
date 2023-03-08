@@ -9,14 +9,14 @@ const ContactUsForm = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [country, setCountry] = useState("");
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("Not mentioned");
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [saved, setSaved] = useState(false);
 
     const contactUs = async () => {
-        if (name === "" || email === "" || country === "" || phone === "" || content === "") {
+        if (name === "" || country === "" || phone === "" || content === "") {
             setError(true)
         } else {
             setError(false)

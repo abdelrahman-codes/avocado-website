@@ -30,7 +30,7 @@ const Banner = () => {
           />
         </Frame>
         <BannerDetails>
-          <Slogan>{banner?.slogan}</Slogan>
+          <Slogan>{language === "E" ? banner?.slogan : banner?.sloganAr}</Slogan>
           <Link className='nav-link' to='/register-company'>
             <Register >{language === "E" ? "Register company Now" : "سجل الشركة الآن"}</Register>
           </Link>

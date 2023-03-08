@@ -7,6 +7,8 @@ const LandingPage = () => {
 
     const [youtubeId, setYouTube] = useState("");
     const [slogan, setSlogan] = useState("");
+    const [sloganAr, setSloganAr] = useState("");
+
     const [headerId, setHeaderId] = useState("")
     const [socialId, setsocialId] = useState("")
     const [facebook, setFacebook] = useState("");
@@ -38,6 +40,7 @@ const LandingPage = () => {
         const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}header`);
         setYouTube(data?.header.youtubeId)
         setSlogan(data?.header.slogan)
+        setSloganAr(data?.header?.sloganAr)
         setHeaderId(data?.header._id)
     }
 
@@ -56,7 +59,7 @@ const LandingPage = () => {
 
     const updateHeader = async () => {
         const { data } = await axios.put(`${process.env.REACT_APP_BASE_URL}header/${headerId}`, {
-            youtubeId, slogan
+            youtubeId, slogan, sloganAr
         });
         setSaved(true)
         setTimeout(() => {
@@ -107,6 +110,8 @@ const LandingPage = () => {
                     <Input className="form-control" value={youtubeId} onChange={(e) => setYouTube(e.target.value)} />
                     <Lable>الشعار</Lable>
                     <Input className="form-control" value={slogan} onChange={(e) => setSlogan(e.target.value)} />
+                    <Lable>الشعار بالعربي</Lable>
+                    <Input className="form-control" value={sloganAr} onChange={(e) => setSloganAr(e.target.value)} />
 
                     {saved &&
                         <div className="d-flex justify-content-center my-2">

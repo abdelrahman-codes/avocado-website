@@ -8,18 +8,19 @@ import { set } from '../../slices/sectionSlice';
 const TempleteTopbar = ({ county, templete, id }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
+    const [titleAr, setTitleAr] = useState("");
     const [add, setAdd] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const addSection = async () => {
-        if (title === "") {
+        if (title === "" || titleAr === "") {
             setError(true)
 
         } else {
             setError(false)
             setLoading(true)
             const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}template/section`, {
-                title, template: id,
+                title, template: id, titleAr
             });
             dispatch(set(data.templateSection))
             setLoading(false)
@@ -37,7 +38,10 @@ const TempleteTopbar = ({ county, templete, id }) => {
             {add &&
                 <>
                     <button className="btn btn-outline-secondary px-2 " onClick={addSection}>{loading ? "تحميل..." : "حفظ"} </button>
-                    <input type="text" className="form-control mx-2" placeholder='اسم السكشن' style={{ border: error ? "1px solid red" : "1px solid gray" }} onChange={(e) => setTitle(e.target.value)} />
+                    <div className="d-flex flex-column align-items-start justify-content-start">
+                        <input type="text" className="form-control m-1" placeholder='اسم السكشن بالانجليزي' style={{ border: error ? "1px solid red" : "1px solid gray" }} onChange={(e) => setTitle(e.target.value)} />
+                        <input type="text" className="form-control m-1" placeholder='اسم السكشن بالعربي' style={{ border: error ? "1px solid red" : "1px solid gray" }} onChange={(e) => setTitleAr(e.target.value)} />
+                    </div>
                 </>
             }
 
