@@ -45,7 +45,7 @@ const CountryBtn = () => {
             <div className="collapse" id="collapseExample">
                 <div className="d-flex flex-column justify-content-end align-items-end p-1">
                     <input type="text" className="form-control mb-2" placeholder='اسم البلد' onChange={(e) => setName(e.target.value)} />
-                    <input class="form-control mb-2" type="file" id="formFile" onChange={(e) => setPic(e.target.files[0])} />
+                    <input className="form-control mb-2" type="file" id="formFile" onChange={(e) => setPic(e.target.files[0])} />
                     {error && <p style={{ color: "red" }}>please fill all fields</p>}
                     <button className="btn btn-primary" onClick={addCountry}>{loading ? "تحميل..." : "حفظ"}</button>
                 </div>

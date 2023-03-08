@@ -151,18 +151,18 @@ const RegisterCompanyFormSection = () => {
                             }
 
 
-                            {sections.map(section => (
+                            {sections.map((section, index) => (
                                 <>
                                     {language === "E"
-                                        ? <h4>{section.title}</h4>
-                                        : <h4 style={{ textAlign: 'right', borderLeft: "none", borderRight: "10px solid #89664C", marginRight: "5px", marginLeft: "0px" }}>{section.title}</h4>
+                                        ? <h4 key={section.title + index}>{section.title}</h4>
+                                        : <h4 key={section.title + index} style={{ textAlign: 'right', borderLeft: "none", borderRight: "10px solid #89664C", marginRight: "5px", marginLeft: "0px" }}>{section.title}</h4>
                                     }
 
                                     {questions.map((question, index) => {
                                         if (question.section === section._id)
                                             return <>
 
-                                                <div style={language === "A" ? { marginLeft: "0px", marginRight: "20px", display: "flex", flexDirection: "column", alignItems: "flex-end" } : { marginLeft: "20px" }}>
+                                                <div key={question._id} style={language === "A" ? { marginLeft: "0px", marginRight: "20px", display: "flex", flexDirection: "column", alignItems: "flex-end" } : { marginLeft: "20px" }}>
                                                     {language === "E"
                                                         ? <h6>{question.question}</h6>
                                                         : <h6 style={{ textAlign: 'right', }}>{question.questionAr}</h6>

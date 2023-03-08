@@ -4,15 +4,15 @@ import SectionQSA from './SectionQSA';
 
 const TempleteSectionForm = ({ id }) => {
     return (
-        <div class="accordion mb-4 " id="accordionExample">
-            <Accordion class="accordion-item ">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#${id}`} aria-expanded="false" aria-controls={`${id}`}>
+        <div className="accordion mb-4 " id="accordionExample">
+            <Accordion className="accordion-item ">
+                <h2 className="accordion-header" id="headingTwo">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#${id}`} aria-expanded="false" aria-controls={`${id}`}>
                         {id}
                     </button>
                 </h2>
-                <div id={`${id}`} class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                <div id={`${id}`} className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div className="accordion-body">
                         <SectionQSA />
                     </div>
                     <div className="d-flex justify-content-end ">

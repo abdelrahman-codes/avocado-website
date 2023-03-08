@@ -27,19 +27,19 @@ const NewCompanyDetail = () => {
             <Navbar />
             <NewCompanyDetailHeader name={request?.name} company={request?.companyName} companyType={request?.companyType} country={request?.country} details={request?.details} />
             <Files className='container'>
-                {request?.files?.map(file => {
+                {request?.files?.map((file, index) => {
                     if (file.includes(".png") || file.includes(".jpeg") || file.includes(".jpg")) {
                     } else {
-                        return <FilesSection file={file} />;
+                        return <FilesSection key={file + index} file={file} />;
 
                     }
                 })}
             </Files>
 
             <Files className='container'>
-                {request?.files?.map(file => {
+                {request?.files?.map((file, index) => {
                     if (file.includes(".png") || file.includes(".jpeg") || file.includes(".jpg")) {
-                        return <FilesSection pic={file} />;
+                        return <FilesSection key={file + index} pic={file} />;
                     }
                 })}
             </Files>

@@ -53,15 +53,15 @@ const TempletesForm = () => {
             <Templete className='container'>
                 <TempleteTopbar county={country} templete={template} id={id} />
                 {section?.map(ele => (
-                    <div key={ele._id} class="accordion mb-4 " id="accordionExample">
-                        <Accordion class="accordion-item ">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#${ele.title}`} aria-expanded="false" aria-controls={`${ele.title}`}>
+                    <div key={ele._id} className="accordion mb-4 " id="accordionExample">
+                        <Accordion className="accordion-item ">
+                            <h2 className="accordion-header" id="headingTwo">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#${ele.title}`} aria-expanded="false" aria-controls={`${ele.title}`}>
                                     {ele.title}
                                 </button>
                             </h2>
-                            <div id={`${ele.title}`} class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
+                            <div id={`${ele.title}`} className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
                                     {qustion?.map(item => {
                                         if (item.section === ele._id) {
                                             return <SectionQSA key={item._id} id={item._id} QEn={item.question} QAr={item.questionAr} Ty={item.type} />
