@@ -10,6 +10,7 @@ import ContactUsForm from '../../components/ContactUsForm';
 import Navbar from '../../components/navbar/Navbar';
 import MainFooter from '../../components/footer/MainFooter';
 import { useSelector } from 'react-redux';
+import Iframe from 'react-iframe';
 const ContactUs = () => {
     const language = useSelector(state => state.language.value)
     const [social, setSocial] = useState([]);
@@ -29,27 +30,27 @@ const ContactUs = () => {
                         <ContactUsForm />
                         <LeftSide className=" align-items-end" style={{ textAlign: "right" }}>
                             <FAQ >
-                            اترك معلوماتك وسنتواصل معك قريبًا أو يمكنك أيضًا الاتصال بنا على
+                                اترك معلوماتك وسنتواصل معك قريبًا أو يمكنك أيضًا الاتصال بنا على
 
                             </FAQ>
                             <ContactInfo >
                                 <ContactDetails>
                                     {social?.phone}
-                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                    <Icon style={{ marginRight: "0px", marginLeft: "20px", }}>
                                         <PhoneIcon />
                                     </Icon>
                                 </ContactDetails>
 
                                 <ContactDetails>
                                     {social?.email}
-                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                    <Icon style={{ marginRight: "0px", marginLeft: "20px", }}>
                                         <MailIcon />
                                     </Icon>
                                 </ContactDetails>
 
                                 <ContactDetails>
                                     {social?.whatsapp}
-                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                    <Icon style={{ marginRight: "0px", marginLeft: "20px", }}>
                                         <WhatsAppIcon />
                                     </Icon>
 
@@ -57,16 +58,25 @@ const ContactUs = () => {
 
                                 <ContactDetails>
                                     {social?.location}
-                                    <Icon style={{marginRight:"0px",marginLeft:"20px",}}>
+                                    <Icon style={{ marginRight: "0px", marginLeft: "20px", }}>
                                         <LocationOnIcon />
                                     </Icon>
                                 </ContactDetails>
 
                             </ContactInfo>
-                            <Map
+                            {/* <Map
                                 src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
                                 alt="location image"
+                            /> */}
+                            <Iframe url={social?.map || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.0735818916924!2d31.31907222587921!3d30.092078923860104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458154fec93a48d%3A0xf2954309c037d5b4!2sEden%20Spaces!5e0!3m2!1sen!2seg!4v1678306164147!5m2!1sen!2seg"}
+                                width="80%"
+                                height="250"
+                                id=""
+                                styles={{ borderRadius: "15px" }}
+                                display="block"
+                                position="relative"
                             />
+
                         </LeftSide>
                     </>
                 }
