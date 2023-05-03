@@ -8,9 +8,9 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const language = useSelector(state => state.language.value)
   return (
-    <nav className="navbar navbar-expand-lg navbar-light  fixed-top" style={{background:"#89664C"}}>
+    <nav className="navbar navbar-expand-lg navbar-dark  fixed-top" style={{background:"#5E432B"}}>
       <div className="container">
-        <Link className="nav-link" to="/">
+        <Link className="nav-link" style={{color:"#FFFFFF"}} to="/">
           <img src={logoPic} alt="Avocado-logo" />
           Avocado
         </Link>
@@ -32,7 +32,7 @@ const Navbar = () => {
               <NavLink className="nav-link mx-2" to="/contact-us">{language==="E"?"Contact Us":"تواصل معنا"}</NavLink>
             </li>
           </ul>
-          <div>
+          <div style={{color: "white"}}>
             {language === "E"
               ? <span style={{ cursor: "pointer" }} onClick={() => dispatch(set("A"))}>En</span>
               : <span style={{ cursor: "pointer" }} onClick={() => dispatch(set("E"))}>Ar</span>

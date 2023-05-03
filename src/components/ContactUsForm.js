@@ -43,6 +43,7 @@ const ContactUsForm = () => {
                         ? "We will contact you soon!"
                         : <Button
                             onClick={contactUs}
+                            style={{ color: "#FFFFFF", backgroundColor: "#5C9E31" }}
                         >{loading ? "loading" : "Send"}</Button>
                     }
                 </>
@@ -57,6 +58,7 @@ const ContactUsForm = () => {
                         ? "سوف نتصل بك قريبا!"
                         : <Button
                             onClick={contactUs}
+                            style={{ color: "#FFFFFF", backgroundColor: "#5C9E31" }}
                         >{loading ? "تحميل" : "ارسال"}</Button>
                     }
                 </>
@@ -73,7 +75,7 @@ flex:.6;
 display: flex;
 flex-direction: column;
 align-items:center;
-background-color: #89664C;
+background-color: #E3C16F;
 border-radius:20px;
 padding: 25px;
 @media (max-width: 1000px) {

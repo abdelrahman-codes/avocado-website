@@ -22,7 +22,8 @@ const Card = styled.div`
 text-align: center;
 padding: 25px;
 border-radius:20px;
-background-color: #699635;
+background-color: #5C9E31;
+color: #FFFFFF;
 margin:20px 25px;
 
 @media (max-width: 900px) {

@@ -32,7 +32,6 @@ const MainFooter = () => {
                     </Link>
 
                     <Navs>
-                        <NavLink className="nav-link" to="/">{language === "E" ? "Home" : "الرائيسية"} </NavLink>
                         <NavLink className="nav-link" to="/register-company">{language === "E" ? "Register Company" : "تسجيل شركة"} </NavLink>
                         <NavLink className="nav-link" to="/services">{language === "E" ? "Other Services" : "خدمات اخري"} </NavLink>
                         <NavLink className="nav-link" to="/contact-us">{language === "E" ? "Contact Us" : "تواصل معنا"} </NavLink>
@@ -71,7 +70,8 @@ export default MainFooter;
 const Footer = styled.footer`
 padding-top: 90px;
 padding-bottom: 90px;
-background-color: #89664C;
+background-color: #5E432B;
+color: #F5F5DC;
 `;
 const FooterContainer = styled.div`
 @media (max-width:600px){
@@ -138,9 +138,12 @@ justify-content: flex-end;
 align-items: center;
 width: 50%;
 >a{
-    margin-left: 60px;
+    background-color: #89664C;
+    border-radius:100%;
+    padding: 7px;
+    margin-left: 40px;
     @media (max-width: 800px){
-        margin-left: 30px;
+        margin-left: 15px;
 }
 }
 

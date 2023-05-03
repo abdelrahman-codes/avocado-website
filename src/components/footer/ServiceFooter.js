@@ -134,7 +134,7 @@ const ServiceFooter = () => {
 export default ServiceFooter;
 
 const Footer = styled.footer`
-background-color: #89664C;
+background-color: transparent;
 width: 100%;
 `;
 const FooterContainer = styled.div`
@@ -184,13 +184,14 @@ font-weight: bold;
 `;
 const Icon = styled.span`
 margin-right: 20px;
+color: #64A347;
 `;
 const Form = styled.div`
 flex:.6;
 display: flex;
 flex-direction: column;
 align-items:center;
-background-color: #DEDEE1;
+background-color: #E3C16F;
 border-radius:20px;
 padding: 25px;
 @media (max-width: 1000px) {
@@ -232,7 +233,8 @@ border-radius: 20px;
 padding:15px 50px;
 font-weight: bold;
 font-size:16px;
-background-color: #699635;
+background-color: #64A347;
+color: #fff;
  `;
 
 const Message = styled.h6`

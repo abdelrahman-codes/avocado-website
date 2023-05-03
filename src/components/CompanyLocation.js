@@ -80,7 +80,7 @@ justify-content: center;
 }
 
 >div{
-    background-color: #699635;
+    background-color: #C7DBA8;
     margin: 20px;
     padding: 20px;
     border-radius: 20px;

@@ -64,10 +64,6 @@ const ContactUs = () => {
                                 </ContactDetails>
 
                             </ContactInfo>
-                            {/* <Map
-                                src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
-                                alt="location image"
-                            /> */}
                             <Iframe url={social?.map || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.0735818916924!2d31.31907222587921!3d30.092078923860104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458154fec93a48d%3A0xf2954309c037d5b4!2sEden%20Spaces!5e0!3m2!1sen!2seg!4v1678306164147!5m2!1sen!2seg"}
                                 width="80%"
                                 height="250"
@@ -120,9 +116,13 @@ const ContactUs = () => {
                                 </ContactDetails>
 
                             </ContactInfo>
-                            <Map
-                                src={process.env.REACT_APP_LOCATION_IMAGES + social?.pic}
-                                alt="location image"
+                            <Iframe url={social?.map || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.0735818916924!2d31.31907222587921!3d30.092078923860104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458154fec93a48d%3A0xf2954309c037d5b4!2sEden%20Spaces!5e0!3m2!1sen!2seg!4v1678306164147!5m2!1sen!2seg"}
+                                width="80%"
+                                height="250"
+                                id=""
+                                styles={{ borderRadius: "15px" }}
+                                display="block"
+                                position="relative"
                             />
                         </LeftSide>
                         <ContactUsForm />
@@ -180,6 +180,7 @@ font-weight: bold;
 `;
 const Icon = styled.span`
 margin-right: 20px;
+color: #5C9E31;
 `;
 
 const Map = styled.img`

@@ -37,4 +37,5 @@ const Details = styled.div`
 margin-top: 100px;
 margin-bottom: 50px;
 min-height:50vh;
+border-bottom:2px solid black ;
 `;

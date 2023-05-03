@@ -326,7 +326,7 @@ justify-content:center;
 align-items:center;
 text-align: center;
 padding: 20px;
-background-color: #699635;
+background-color: #C7DBA8;
 border-radius: 15px;
 margin: 5px;
 cursor: pointer;
