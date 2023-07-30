@@ -20,7 +20,7 @@ import TempletesForm from './pages/dashboard/TempletesForm';
 import RegisterCompanyForm from './pages/registerCompany/RegisterCompanyForm';
 
 const App = () => {
-    const [isLoggedIn, setisLoggedIn] = useState(null);
+    const [isLoggedIn, setisLoggedIn] = useState(false);
     const logIn = () => {
         if (localStorage.getItem("ManifastoAvocado"))
             setisLoggedIn(true);

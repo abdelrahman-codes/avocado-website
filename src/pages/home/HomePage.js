@@ -9,6 +9,7 @@ const HomePage = () => {
 
     const [section, setSection] = useState([]);
     useEffect(() => {
+        localStorage.clear()
         fetchData();
     }, [])
     const fetchData = async () => {

@@ -7,12 +7,13 @@ const AdminLogin = () => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
     const navigate = useNavigate();
-    const login = () => {
+    const login = (e) => {
         if (process.env.REACT_APP_USERNAME === username && process.env.REACT_APP_PASSWORD === password) {
             localStorage.setItem("ManifastoAvocado", "true")
             navigate("/admin/main-dashboard")
         }
     }
+
     return (
         <>
             <LoginContainer>
@@ -21,7 +22,7 @@ const AdminLogin = () => {
                         <img src={logo} alt="logo" />
                     </Link>
                     <input className="form-control" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} onKeyUp={(e) => setUsername(e.target.value)} />
-                    <input className="form-control my-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} onKeyUp={(e) => setPassword(e.target.value)}/>
+                    <input className="form-control my-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} onKeyUp={(e) => setPassword(e.target.value)} />
                     <button
                         onClick={() => login()}
                     >
