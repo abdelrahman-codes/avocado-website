@@ -20,8 +20,8 @@ const AdminLogin = () => {
                     <Link className="nav-link" to='/' >
                         <img src={logo} alt="logo" />
                     </Link>
-                    <input className="form-control" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-                    <input className="form-control my-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                    <input className="form-control" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} onKeyUp={(e) => setUsername(e.target.value)} />
+                    <input className="form-control my-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} onKeyUp={(e) => setPassword(e.target.value)}/>
                     <button
                         onClick={() => login()}
                     >
